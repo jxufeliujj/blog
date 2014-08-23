@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{.title}}</title>
+	<meta name="robots" content="all">
+	<meta name="keywords" content="{{.keywords}}">
+	<meta name="description" content="{{.description}}">
+
+</head>
+
+<body>
+<div class="clear_bg"></div>
+<div class="body-inner">
+	<div id="header">
+		<header id="blog_title">
+			<script src="/static/themes/default/js/md5.js"></script>
+			<script type="text/javascript">
+					document.write("<img src='http://www.gravatar.com/avatar/" + MD5("{{.options.email}}") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+			</script>
+			<h1><a href="{{.options.siteurl}}">{{.options.sitename}}</a></h1>
+			<span class="des">{{.options.subtitle}}</span>
+        </header>
+		<nav id="menu">	
+			<ul>
+				<li class="current"><a href="./11_files/11.htm">首页</a></li>
+				<li class="common"><a href="http://blog.11ri.net/sort/yuanchuang">原创</a></li>
+				<li class="common"><a href="http://blog.11ri.net/sort/food">美食</a></li>
+				<li class="common"><a href="http://blog.11ri.net/sort/extract">摘录</a></li>
+				<li class="common"><a href="http://blog.11ri.net/sort/share">分享</a></li>
+				<li class="common"><a href="http://blog.11ri.net/t">微语</a></li>
+				<li class="common"><a href="http://blog.11ri.net/links">友链</a></li>
+				<li class="common"><a href="http://blog.11ri.net/guestbook.html">留言</a></li>
+				<li class="common"><a href="http://blog.11ri.net/about.html">关于</a></li>
+			</ul>
+		</nav>
+		<nav id="sub-nav">
+			<div class="social">
+				<a class="weibo" href="{{.options.weibo}}" title="Weibo">Weibo</a>
+				<a class="facebook" href="{{.options.facebook}}" title="Facebook">Facebook</a>
+				<a class="twitter" href="{{.options.twitter}}" title="Twitter">Twitter</a>
+				<a class="github" href="{{.options.github}}" title="GitHub">GitHub</a>
+			</div>
+		</nav>
+				
+			<form action="http://blog.11ri.net/index.php" class="head-search" method="get">
+				<input id="search-input" type="text" name="keyword" class="inputbox" value="搜索..." onfocus="if (value ==&#39;搜索...&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;搜索...&#39;}" x-webkit-speech="" lang="zh-CN">
+			</form>
+		<div class="clear"></div>
+    </div>
+<div id="wrap"><div id="timeline" class="vertical"></div>
+<section id="content">
+{{range $k, $v := .list}}
+	<div class="post_item">
+			<article class="post">
+				<header>
+					<h2><a href="{{$v.Link}}">{{str2html $v.ColorTitle}}</a></h2>
+				</header>
+				<div class="con">
+					{{str2html $v.Excerpt}}
+				</div>
+			</article>
+			<div class="post_bottom">
+					<time>{{$v.Posttime}}</time> | <a rel="nofollow" href="http://blog.11ri.net/yuanchuang/67.html#comments" title="添加新评论">7个评论</a>
+					<span class="premalink">
+						<a rel="nofollow" href="{{$v.Link}}" title="阅读全文">已有835人围观</a>
+					</span>
+			</div>
+			<div class="post_arrow"></div>
+	</div>	
+{{end}}
+
+<ol class="page-navigator">
+			 <span>1</span>  <a href="http://blog.11ri.net/page/2">2</a>  <a href="http://blog.11ri.net/page/3">3</a>  <a href="http://blog.11ri.net/page/4">4</a>  <a href="http://blog.11ri.net/page/5">5</a>  <a href="http://blog.11ri.net/page/6">6</a> <em>...</em> <a href="http://blog.11ri.net/page/7" title="尾页">»</a>		</ol>
+</section>
+
+<div style="clear:both;"></div>
+<div class="bloga" id="bloga">
+<footer id="footer">
+		<span class="back2top">
+		<a rel="nofollow" href="http://blog.11ri.net/rss.php" target="_blank">Rss</a> / 
+		<a rel="nofollow" href="javascript:void(0);" onclick="MGJS.goTop();return false;">Top</a>
+		</span>
+		<div class="copy">Copyright ©  2010-2013 / Powered by <a href="http://www.emlog.net/" title="emlog 5.3.0">emlog</a>
+		/ Theme by <a href="http://pagecho.com/">cho</a>
+		<br>Don't forget transplant by <a href="./11_files/11.htm">LaoLuo</a>!<br>
+		<a href="http://www.miibeian.gov.cn/" target="_blank"></a> 		<a href="http://blog.11ri.net/sitemap.xml" rel="sitemap">sitemap</a>		</div>
+</footer>
+</div>
+</div><!--end #wrap-->
+<script type="text/javascript" src="./11_files/F61B5.js"></script>
+<script type="text/javascript"> 
+jQuery('.con a:has(img)').lightBox();
+</script> 
+<script type="text/javascript">  
+    if (top.location !== self.location) {  
+      top.location = self.location;  
+    }  
+</script>
+</div>
+<div style="display:none">
+	{{str2html .options.stat}}
+</div>
+</body>
+</html>

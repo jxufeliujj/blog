@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/jxufeliujj/blog/models"
 	"strings"
+	"os"
 )
 
 type baseController struct {
@@ -30,7 +31,9 @@ func (this *baseController) display(tpl string) {
 	} else {
 		theme = "default"
 	}
-
+	if _, err := os.Stat(beego.ViewsPath + "/" + theme + "/layout.html"); err == nil {
+		this.Layout = theme + "/layout.html"
+	}
 	this.TplNames = theme + "/" + tpl + ".html"
 }
 

@@ -5,7 +5,7 @@ import (
 	_ "github.com/jxufeliujj/blog/models"
 	_ "github.com/jxufeliujj/blog/routers"
 )
-//中文
+//去掉中文
 func main() {
 	beego.Run()
 }

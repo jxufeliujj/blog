@@ -1,14 +1,15 @@
 <h2 class="title_tj">
     <p>文章<span>推荐</span></p>
 </h2>
-{{range $k, $v := .list}}
-  <div class="bloglist left">
-    <h3>{{$v.Title}}</h3>
-    <figure><img src="views/double/images/001.png"></figure>
-    <ul>
-      <p>{{str2html $v.Excerpt}}</p>
-      <a title="阅读全文" href="{{$v.Link}}" class="readmore">阅读全文>></a>
-    </ul>
-    <p class="dateview"><span>2012-11-11</span><span>作者：123</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
-  </div>
-{{end}}
+<div class="bloglist left">
+  {{range $k, $v := .list}}
+    
+      <h3>{{$v.Title}}</h3>
+      <figure><img src="views/double/images/001.png"></figure>
+      <ul>
+        <p>{{str2html $v.Excerpt}}</p>
+        <a title="阅读全文" href="{{$v.Link}}" class="readmore">阅读全文>></a>
+      </ul>
+      <p class="dateview"><span>2012-11-11</span><span>作者：123</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+  {{end}}
+</div>

@@ -3,8 +3,8 @@ package blog
 import (
 	"github.com/astaxie/beego"
 	"github.com/jxufeliujj/blog/models"
-	"strings"
 	"os"
+	"strings"
 )
 
 type baseController struct {
@@ -32,8 +32,9 @@ func (this *baseController) display(tpl string) {
 		theme = "default"
 	}
 	if _, err := os.Stat(beego.ViewsPath + "/" + theme + "/layout.html"); err == nil {
-		this.Layout = theme + "/layout.html"
+		// this.Layout = theme + "/layout.html"
 	}
+	this.Data["root"] = beego.ViewsPath + "/" + theme + "/"
 	this.TplNames = theme + "/" + tpl + ".html"
 }
 
@@ -67,5 +68,4 @@ func (this *baseController) setHeadMetas(params ...string) {
 	} else {
 		this.Data["description"] = this.getOption("description")
 	}
-
 }

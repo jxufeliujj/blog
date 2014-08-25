@@ -1,0 +1,8 @@
+<div itemscope itemtype="http://schema.org/Blog">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">{{.post.Title}}</h1>
+	<div class="entry-content" itemprop="articleBody">
+	{{str2html .post.Content}}
+	</div>
+</article>
+</div>

@@ -3,7 +3,6 @@ package blog
 import (
 	"github.com/astaxie/beego"
 	"github.com/jxufeliujj/blog/models"
-	"os"
 	"strings"
 )
 
@@ -31,11 +30,14 @@ func (this *baseController) display(tpl string) {
 	} else {
 		theme = "default"
 	}
-	if _, err := os.Stat(beego.ViewsPath + "/" + theme + "/layout.html"); err == nil {
-		// this.Layout = theme + "/layout.html"
-	}
+	this.Layout = theme + "/layout.html"
 	this.Data["root"] = beego.ViewsPath + "/" + theme + "/"
 	this.TplNames = theme + "/" + tpl + ".html"
+
+	this.LayoutSections = make(map[string]string)
+    this.LayoutSections["head"] = theme + "/head.html"
+    this.LayoutSections["photo"] = theme + "/photo.html"
+    this.LayoutSections["right"] = theme + "/right.html"
 }
 
 func (this *baseController) getOption(name string) string {

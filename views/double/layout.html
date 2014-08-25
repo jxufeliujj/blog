@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="gb2312">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.title}}</title>
+  <meta name="keywords" content="{{.keywords}}">
+  <meta name="description" content="{{.description}}">
+  <link href="{{.root}}css/base.css" rel="stylesheet">
+  <link href="{{.root}}css/index.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/modernizr.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+  {{.head}}
+</header>
+<div class="banner">
+  <section class="box">
+    <ul class="texts">
+      <p>打了死结的青春，捆死一颗苍白绝望的灵魂。</p>
+      <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>
+      <p>加了锁的青春，不会再因谁而推开心门。</p>
+    </ul>
+    <div class="avatar"><a href="/"><span>{{.options.sitename}}</span></a> </div>
+  </section>
+</div> 
+{{.photo}}
+<article>
+        {{.LayoutContent}}
+        {{.right}}
+</article>
+<footer>
+  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a> <a href="/">网站统计</a></p>
+</footer>
+<script src="{{.root}}js/silder.js"></script>
+</body>
+</html>

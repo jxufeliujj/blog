@@ -66,7 +66,11 @@ func (this *MainController) Show() {
 
 	this.Data["post"] = post
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
-	this.display("article")
+	if urlname == "about.html" {
+		this.display("article", "right-aboutright")
+	} else {
+		this.display("article", urlname)
+	}
 }
 
 //历史归档

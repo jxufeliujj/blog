@@ -23,7 +23,7 @@ func (this *baseController) Prepare() {
 	this.Data["options"] = this.options
 }
 
-func (this *baseController) display(tpl string) {
+func (this *baseController) display(tpl ...string) {
 	var theme string
 	if v, ok := this.options["theme"]; ok && v != "" {
 		theme = v
@@ -32,13 +32,25 @@ func (this *baseController) display(tpl string) {
 	}
 	this.Layout = theme + "/layout.html"
 	this.Data["root"] = "/" + beego.ViewsPath + "/" + theme + "/"
-	this.TplNames = theme + "/" + tpl + ".html"
+	this.TplNames = theme + "/" + tpl[0] + ".html"
 
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["head"] = theme + "/head.html"
+	this.LayoutSections["foot"] = theme + "/foot.html"
+	this.LayoutSections["banner"] = theme + "/banner.html"
 	this.LayoutSections["photo"] = theme + "/photo.html"
 	this.LayoutSections["right"] = theme + "/right.html"
-	this.LayoutSections["foot"] = theme + "/foot.html"
+
+	var section []string
+	l := len(tpl)
+	for i := 1; i < l; i++ {
+		section = strings.Split(tpl[i], "-")
+		if len(section) == 2 {
+			this.LayoutSections[section[0]] = theme + "/" + section[1] + ".html"
+		} else {
+			this.LayoutSections[section[0]] = ""
+		}
+	}
 }
 
 func (this *baseController) getOption(name string) string {

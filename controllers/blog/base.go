@@ -35,9 +35,10 @@ func (this *baseController) display(tpl string) {
 	this.TplNames = theme + "/" + tpl + ".html"
 
 	this.LayoutSections = make(map[string]string)
-    this.LayoutSections["head"] = theme + "/head.html"
-    this.LayoutSections["photo"] = theme + "/photo.html"
-    this.LayoutSections["right"] = theme + "/right.html"
+	this.LayoutSections["head"] = theme + "/head.html"
+	this.LayoutSections["photo"] = theme + "/photo.html"
+	this.LayoutSections["right"] = theme + "/right.html"
+	this.LayoutSections["foot"] = theme + "/foot.html"
 }
 
 func (this *baseController) getOption(name string) string {

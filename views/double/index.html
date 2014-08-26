@@ -4,12 +4,12 @@
 <div class="bloglist left">
   {{range $k, $v := .list}}
     
-      <h3>{{$v.Title}}</h3>
+      <h3>{{str2html $v.ColorTitle}}</h3>
       <figure><img src="views/double/images/001.png"></figure>
       <ul>
         <p>{{str2html $v.Excerpt}}</p>
         <a title="阅读全文" href="{{$v.Link}}" class="readmore">阅读全文>></a>
       </ul>
-      <p class="dateview"><span>2012-11-11</span><span>作者：123</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+      <p class="dateview"><span>{{date $v.Posttime "Y-m-j"}}</span><span>作者：{{$v.Author}}</span><span>所属标签：[{{str2html $v.TagsLink}}]</span></p>
   {{end}}
 </div>

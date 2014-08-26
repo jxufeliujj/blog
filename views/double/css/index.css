@@ -181,7 +181,7 @@ opacity:1;
 }
 }
 .avatar { float: right; margin: 40px; width: 130px; height: 130px; border-radius: 100%; overflow: hidden; border: #FFF 4px solid }
-.avatar a { display: block; padding-top: 97px; width: 160px; background: url(../images/photos.jpg) no-repeat; background-size: 130px 130px }
+.avatar a { display: block; padding-top: 97px; width: 160px; background: url(../images/logo.png) no-repeat; background-size: 130px 130px }
 .avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 130px; height: 55px; text-align: center; line-height: 20px; color: #fff; background: rgba(0, 0, 0, .5); -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
 .avatar a:hover span { display: block; margin-top: 0; }
 .template { background: #F1F0EE }

@@ -31,7 +31,7 @@ func (this *baseController) display(tpl string) {
 		theme = "default"
 	}
 	this.Layout = theme + "/layout.html"
-	this.Data["root"] = beego.ViewsPath + "/" + theme + "/"
+	this.Data["root"] = "/" + beego.ViewsPath + "/" + theme + "/"
 	this.TplNames = theme + "/" + tpl + ".html"
 
 	this.LayoutSections = make(map[string]string)

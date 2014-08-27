@@ -1,6 +1,7 @@
 package blog
 
 import (
+	"fmt"
 	"github.com/jxufeliujj/blog/models"
 	"strconv"
 	"strings"
@@ -30,13 +31,46 @@ func (this *MainController) Index() {
 	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
 	if count > 0 {
+		query.OrderBy("-istop", "-views").Limit(pagesize, (page-1)*pagesize).All(&list)
+	}
+
+	this.Data["list"] = list
+	this.Data["css"] = "index"
+	this.Data["page"] = models.NewPager(int64(page), int64(count), int64(pagesize), "").ToString()
+	this.setHeadMetas()
+	this.display("index")
+}
+
+//blog分页显示
+func (this *MainController) BlogList() {
+	var (
+		list     []*models.Post
+		pagesize int
+		err      error
+		page     int
+	)
+
+	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
+		page = 1
+	}
+
+	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
+		pagesize = 10
+	}
+	fmt.Println("进入BlogList", page)
+
+	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
+	count, _ := query.Count()
+	if count > 0 {
 		query.OrderBy("-istop", "-posttime").Limit(pagesize, (page-1)*pagesize).All(&list)
 	}
 
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "").ToString()
+	this.Data["css"] = "style"
+	this.Data["class"] = "blogs"
+	this.Data["page"] = models.NewPager(int64(page), int64(count), int64(pagesize), "").ToString()
 	this.setHeadMetas()
-	this.display("index")
+	this.display("life")
 }
 
 //文章显示
@@ -45,7 +79,7 @@ func (this *MainController) Show() {
 		post models.Post
 		err  error
 	)
-
+	fmt.Println("进入Show")
 	urlname := this.Ctx.Input.Param(":urlname")
 	if urlname != "" {
 		post.Urlname = urlname
@@ -65,11 +99,14 @@ func (this *MainController) Show() {
 	post.Content = strings.Replace(post.Content, "_ueditor_page_break_tag_", "", -1)
 
 	this.Data["post"] = post
+	this.Data["class"] = "blogs"
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
 	if urlname == "about.html" {
-		this.display("article", "right-aboutright")
+		this.Data["css"] = "about"
+		this.display("article")
 	} else {
-		this.display("article", urlname)
+		this.Data["css"] = "new"
+		this.display("article")
 	}
 }
 

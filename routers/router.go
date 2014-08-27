@@ -11,12 +11,16 @@ func init() {
 	//前台路由
 	beego.Router("/", &blog.MainController{}, "*:Index")
 	beego.Router("/page/:page:int", &blog.MainController{}, "*:Index")
-	beego.Router("/article/:id:int", &blog.MainController{}, "*:Show")      //ID访问
-	beego.Router("/article/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
+	beego.Router("/article/:id:int", &blog.MainController{}, "*:Show") //ID访问
+
 	beego.Router("/archives", &blog.MainController{}, "*:Archives")
 	beego.Router("/archives/page/:page:int", &blog.MainController{}, "*:Archives")
 	beego.Router("/category/:name(.+?)", &blog.MainController{}, "*:Category")
 	beego.Router("/category/:name(.+?)/page/:page:int", &blog.MainController{}, "*:Category")
+
+	beego.Router("/life:page:int.html", &blog.MainController{}, "*:BlogList")
+	beego.Router("/life.html", &blog.MainController{}, "*:BlogList")
+
 	beego.Router("/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
 
 	//后台路由

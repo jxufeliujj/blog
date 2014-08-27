@@ -7,7 +7,7 @@
   <meta name="keywords" content="{{.keywords}}">
   <meta name="description" content="{{.description}}">
   <link href="{{.root}}css/base.css" rel="stylesheet">
-  <link href="{{.root}}css/index.css" rel="stylesheet">
+ <link href="{{.root}}css/{{.css}}.css" rel="stylesheet">
   <!--[if lt IE 9]>
   <script src="{{.root}}js/modernizr.js"></script>
   <![endif]-->
@@ -16,7 +16,7 @@
   {{.head}}
   {{.banner}}
   {{.photo}}
-<article>
+<article class="{{.class}}">
         {{.LayoutContent}}
         {{.right}}
 </article>

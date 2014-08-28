@@ -10,7 +10,6 @@ func init() {
 
 	//前台路由
 	beego.Router("/", &blog.MainController{}, "*:Index")
-	beego.Router("/page/:page:int", &blog.MainController{}, "*:Index")
 	beego.Router("/article/:id:int", &blog.MainController{}, "*:Show") //ID访问
 
 	beego.Router("/archives", &blog.MainController{}, "*:Archives")
@@ -22,6 +21,7 @@ func init() {
 	beego.Router("/life.html", &blog.MainController{}, "*:BlogList")
 	beego.Router("/book.html", &blog.MainController{}, "*:Book")
 	beego.Router("/mood.html", &blog.MainController{}, "*:Mood")
+	beego.Router("/photo.html", &blog.MainController{}, "*:Photo")
 
 	beego.Router("/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
 

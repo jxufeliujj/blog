@@ -38,7 +38,7 @@ func (this *TagController) list() {
 	}
 
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(page, count, pagesize, "/admin/tag", true).ToString()
+	this.Data["pagebar"] = models.NewPager(page, count, pagesize, "/admin/tag").ToString()
 	this.display("tag_list")
 }
 

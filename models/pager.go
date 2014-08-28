@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"math"
-	"strings"
 )
 
 type Pager struct {
@@ -12,44 +11,55 @@ type Pager struct {
 	Totalnum int64
 	Pagesize int64
 	urlpath  string
-	urlquery string
-	nopath   bool
+	pre      string
+	ext      string
 }
 
-func NewPager(page, totalnum, pagesize int64, url string, nopath ...bool) *Pager {
+func NewPager(page, totalnum, pagesize int64, arg ...string) *Pager {
 	p := new(Pager)
 	p.Page = page
 	p.Totalnum = totalnum
 	p.Pagesize = pagesize
-
-	arr := strings.Split(url, "?")
-	p.urlpath = arr[0]
-	if len(arr) > 1 {
-		p.urlquery = "?" + arr[1]
-	} else {
-		p.urlquery = ""
+	p.pre = arg[0]
+	if len(arg) > 1 {
+		p.ext = arg[1]
 	}
-
-	if len(nopath) > 0 {
-		p.nopath = nopath[0]
-	} else {
-		p.nopath = false
+	if len(arg) > 2 {
+		p.urlpath = arg[2]
 	}
-
 	return p
 }
 
 func (this *Pager) url(page int64) string {
-	if this.nopath { //不使用目录形式
-		if this.urlquery != "" {
-			return fmt.Sprintf("%s%s&page=%d", this.urlpath, this.urlquery, page)
+	if this.urlpath != "" {
+		if this.ext != "" {
+			return fmt.Sprintf("/%s/%s%d.%s", this.urlpath, this.pre, page, this.ext)
 		} else {
-			return fmt.Sprintf("%s?page=%d", this.urlpath, page)
+			return fmt.Sprintf("/%s/?%s=%d", this.urlpath, this.pre, page)
 		}
+
 	} else {
-		return fmt.Sprintf("%s/page/%d%s", this.urlpath, page, this.urlquery)
+
+		if this.ext != "" {
+			return fmt.Sprintf("/%s%d.%s", this.pre, page, this.ext)
+		} else {
+			return fmt.Sprintf("/?%s=%d", this.pre, page)
+		}
 	}
 }
+
+// <div class="page">
+// <a title="Total record"><b>105</b></a>
+// <a href="/news/index.html"><<</a>
+// <a href="/news/index.html"><</a>
+// <a href="/news/index.html">1</a>
+// <b>2</b>
+// <a href="/news/index_3.html">3</a>
+// <a href="/news/index_4.html">4</a>
+// <a href="/news/index_5.html">5</a>
+// <a href="/news/index_3.html">></a>
+// <a href="/news/index_5.html">>></a>
+// </div>
 
 func (this *Pager) ToString() string {
 	if this.Totalnum <= this.Pagesize {
@@ -80,15 +90,15 @@ func (this *Pager) ToString() string {
 	}
 
 	buf.WriteString("<div class=\"page\">")
+	buf.WriteString(fmt.Sprintf("<a title=\"Total record\"><b>%d</b></a>", 107))
 	if this.Page > 1 {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\"><<</a></li>", this.url(1)))
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\"><</a></li>", this.url(this.Page-1)))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\">&laquo;</a>", this.url(this.Page-1)))
 	} else {
-		buf.WriteString("<b>1</b>")
+		buf.WriteString("<b>&laquo;</b>")
 	}
 
 	if this.Page > linknum {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">1...</a>", this.url(1)))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\">1</a>", this.url(1)))
 	}
 
 	for i := from; i <= to; i++ {
@@ -100,13 +110,15 @@ func (this *Pager) ToString() string {
 	}
 
 	if totalpage > to {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">...%d</a>", this.url(totalpage), totalpage))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\">%d</a>", this.url(totalpage), totalpage))
 	}
 
 	if this.Page < totalpage {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">></a>", this.url(this.Page+1)))
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">></a>", this.url(totalpage)))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\">&raquo;</a>", this.url(this.Page+1)))
+	} else {
+		buf.WriteString(fmt.Sprintf("<b>&raquo;</b>"))
 	}
 	buf.WriteString("</div>")
+
 	return buf.String()
 }

@@ -35,7 +35,6 @@ func (this *MainController) Index() {
 
 	this.Data["list"] = list
 	this.Data["css"] = "index"
-	this.Data["page"] = models.NewPager(int64(page), int64(count), int64(pagesize), "").ToString()
 	this.setHeadMetas()
 	this.display("index")
 }
@@ -64,9 +63,9 @@ func (this *MainController) BlogList() {
 	}
 
 	this.Data["list"] = list
-	this.Data["css"] = "style"
+	this.Data["css"] = "life"
 	this.Data["class"] = "blogs"
-	this.Data["page"] = models.NewPager(int64(page), int64(count), int64(pagesize), "").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "life", "html", "").ToString()
 	this.setHeadMetas()
 	this.display("life")
 }
@@ -82,6 +81,15 @@ func (this *MainController) Book() {
 
 //说说
 func (this *MainController) Mood() {
+	this.Data["class"] = "aboutcon"
+	this.setHeadMetas("碎言碎语")
+	this.Data["css"] = "mood"
+	this.right = ""
+	this.display("mood")
+}
+
+//摄影
+func (this *MainController) Photo() {
 	this.Data["class"] = "aboutcon"
 	this.setHeadMetas("碎言碎语")
 	this.Data["css"] = "mood"
@@ -158,7 +166,7 @@ func (this *MainController) Archives() {
 
 	this.Data["page"] = page
 	this.Data["pagesize"] = pagesize
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/archives").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "archives").ToString()
 	this.Data["result"] = result
 
 	this.setHeadMetas("归档")
@@ -221,7 +229,7 @@ func (this *MainController) Category() {
 	this.Data["page"] = page
 	this.Data["pagesize"] = pagesize
 	this.Data["result"] = result
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), tag.Link()).ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "category/"+tag.Link()).ToString()
 
 	this.setHeadMetas(tag.Name, tag.Name, tag.Name)
 	this.display("category")

@@ -1,9 +1,7 @@
 <aside class="right">
 
-    <div class="news">
-    <h3>
-      <p>最新<span>文章</span></p>
-    </h3>
+  <div class="news">
+    <h3><p>最新<span>文章</span></p></h3>
     <ul class="rank">
       <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
       <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
@@ -14,9 +12,7 @@
       <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>
       <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>
     </ul>
-    <h3 class="ph">
-      <p>点击<span>排行</span></p>
-    </h3>
+    <h3 class="ph"><p>点击<span>排行</span></p></h3>
     <ul class="paih">
       <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
       <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
@@ -24,18 +20,25 @@
       <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
       <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
     </ul>
-    <h3 class="links">
-      <p>友情<span>链接</span></p>
-    </h3>
-    <ul class="website">
-      <li><a href="/">个人博客</a></li>
-      <li><a href="/">谢泽文个人博客</a></li>
-      <li><a href="/">3DST技术网</a></li>
-      <li><a href="/">思衡网络</a></li>
-    </ul> 
-    </div>
+
     <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-<div class="guanzhu">扫描二维码关注<span>杨青博客</span>官方微信账号</div>   
-    <a href="/" class="weixin"></a>
+
+  <div class="guanzhu">扫描二维码关注<span>{{.options.nickname}}博客</span>官方微信账号</div>   
+  <a href="/" class="weixin"></a>
+  <div class="visitors">
+      <h3><p>最近访客</p></h3>
+      <ul class="ds-recent-visitors"  data-num-items="24"></ul>
+      <script type="text/javascript">
+      var duoshuoQuery = {short_name:"doubleliu"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] 
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+  </div>
 </aside>

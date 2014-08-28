@@ -1,9 +1,36 @@
-<h1 class="t_nav"><span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span><a href="/" class="n1">网站首页</a><a href="/" class="n2">关于我</a></h1>
-<div itemscope itemtype="http://schema.org/Blog">
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">{{.post.Title}}</h1>
-	<div class="entry-content" itemprop="articleBody">
-	{{str2html .post.Content}}
-	</div>
-</article>
+<h1 class="t_nav">
+	<span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
+	<a href="/" class="n1">网站首页</a>
+	<a href="/life.html" class="n2">慢生活</a>
+</h1>
+
+<div class="index_about">
+    <h2 class="c_titile">{{str2html .post.ColorTitle}}</h2>
+    <p class="box_c">
+    	<span class="d_time">发布时间：{{date .post.Posttime "Y-m-j"}}</span>
+    	<span>编辑：{{.post.Author}}</span>
+    </p>
+    <ul class="infos">
+     	{{str2html .post.Content}}
+    </ul>
+    <div class="keybq">
+    <p><span>关键字词</span>[{{str2html .post.TagsLink}}]</p>
+    
+    </div>
+    <div class="ad"> </div>
+    <div class="nextinfo">
+      <p>上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a></p>
+      <p>下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a></p>
+    </div>
+    <div class="otherlink">
+      <h2>相关文章</h2>
+      <ul>
+        <li><a href="/news/s/2013-07-25/524.html" title="现在，我相信爱情！">现在，我相信爱情！</a></li>
+        <li><a href="/newstalk/mood/2013-07-24/518.html" title="我希望我的爱情是这样的">我希望我的爱情是这样的</a></li>
+        <li><a href="/newstalk/mood/2013-07-02/335.html" title="有种情谊，不是爱情，也算不得友情">有种情谊，不是爱情，也算不得友情</a></li>
+        <li><a href="/newstalk/mood/2013-07-01/329.html" title="世上最美好的爱情">世上最美好的爱情</a></li>
+        <li><a href="/news/read/2013-06-11/213.html" title="爱情没有永远，地老天荒也走不完">爱情没有永远，地老天荒也走不完</a></li>
+        <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
+      </ul>
+    </div>
 </div>

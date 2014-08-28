@@ -4,7 +4,7 @@
 <div class="bloglist left">
   {{range $k, $v := .list}}
     
-      <h3>{{str2html $v.ColorTitle}}</h3>
+      <h3><a href="{{$v.Link}}">{{str2html $v.ColorTitle}}</a></h3>
       <figure><img src="views/double/images/001.png"></figure>
       <ul>
         <p>{{str2html $v.Excerpt}}</p>

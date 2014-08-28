@@ -21,17 +21,3 @@ ul.infos p img { display: block; margin: auto }
 .otherlink ul { margin: 10px 0 }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 290px; float: left; overflow: hidden; margin-right: 30px; }
 .otherlink li a:hover{ text-decoration:underline}
-.rank li { height: 25px; line-height: 25px; clear: both; padding-left: 5px; overflow: hidden; padding-left: 15px; background: url(../images/li.jpg) no-repeat left center; }
-.rank { margin: 10px 0 }
-.rank li a { color: #333; }
-.paih { background: url(../images/ph.jpg) no-repeat left 8px; margin: 10px 0 }
-.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
-.news h3, .visitors h3 { font-size: 14px; background: url(../images/r_title_bg.jpg) repeat-x center; }
-.news h3 p, .visitors h3 p { background: #fff; width: 70px }
-.news h3 span { color: #65b020 }
-.news h3.ph span { color: #37ccca; }
-.news h3.links span { color: #F17B6B; }
-.news ul { margin-bottom: 20px }
-.news ul li a:hover { text-decoration: underline }
-.visitors ul, .bdshare_t { margin: 20px 0 }
-.ad { width: 100%; margin: 10px auto; }

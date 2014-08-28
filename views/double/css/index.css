@@ -205,20 +205,3 @@ h2.title_tj p { background: #fff; width: 90px }
 .dateview span { margin: 0 10px; }
 .dateview span a { color: #099B43; }
 a.readmore { background: #fd8a61; color: #fff; padding: 5px 10px; float: right; margin: 20px 0 0 0 }
-.weather { background: url(../images/weather_bg.jpg) no-repeat; height: 88px; margin: 20px 0;padding: 20px 0 0 75px; }
-.news h3 { font-size: 14px; background: url(../images/r_title_bg.jpg) repeat-x center }
-.news h3 p { background: #fff; width: 70px }
-.news h3 span { color: #65b020 }
-.news h3.ph span { color: #37ccca; }
-.news h3.links span { color: #F17B6B; }
-.news ul { margin-bottom: 20px }
-.news ul li a:hover { text-decoration: underline }
-.rank li { height: 25px; line-height: 25px; clear: both; padding-left: 5px; overflow: hidden; padding-left: 15px; background: url(../images/li.jpg) no-repeat left center; }
-.rank { margin: 10px 0 }
-.rank li a { color: #333; }
-.paih { background: url(../images/ph.jpg) no-repeat left 8px; margin: 10px 0 }
-.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
-.website { margin: 10px 0; background: #F3F3F3; border-radius: 50%; text-align: center; }
-.website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
-.weixin { background: url(../images/weixin.jpg) no-repeat; width: 100%; display: inline-block; height: 288px; overflow: hidden; margin: 10px 0; clear: both }
-

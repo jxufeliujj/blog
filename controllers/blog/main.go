@@ -76,7 +76,7 @@ func (this *MainController) BlogList() {
 //文章显示
 func (this *MainController) Show() {
 	var (
-		post models.Post
+		post *models.Post = new(models.Post)
 		err  error
 	)
 	fmt.Println("进入Show")
@@ -101,13 +101,8 @@ func (this *MainController) Show() {
 	this.Data["post"] = post
 	this.Data["class"] = "blogs"
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
-	if urlname == "about.html" {
-		this.Data["css"] = "about"
-		this.display("article")
-	} else {
-		this.Data["css"] = "new"
-		this.display("article")
-	}
+	this.Data["css"] = "new"
+	this.display("article")
 }
 
 //历史归档

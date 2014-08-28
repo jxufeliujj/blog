@@ -42,6 +42,7 @@ footer { text-align: center; line-height: 40px; border-top: #E8E8E8 1px solid ; 
 .weixin { background: url(../images/weixin.jpg) no-repeat; width: 100%; display: inline-block; height: 250px; overflow: hidden; margin: 10px 0; clear: both }
 aside .rnav ul li a:hover { background: rgba(255,255,255,0.2); -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
 .ad{ width:100%; margin:10px auto;}
+.duoshuo{ width:710px;overflow: hidden; background: url(../images/r_line.jpg) repeat-y right; line-height:22px; margin:20px auto;padding-right: 30px; }
 
 /*翻页样式*/
 .page{ margin:20px 0 0 0; text-align:center; width:100%;overflow: hidden;}

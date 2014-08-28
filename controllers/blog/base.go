@@ -9,6 +9,7 @@ import (
 type baseController struct {
 	beego.Controller
 	options map[string]string
+	right   string
 }
 
 func (this *baseController) Prepare() {
@@ -33,7 +34,12 @@ func (this *baseController) display(tpl string) {
 		this.LayoutSections["banner"] = theme + "/banner.html"
 		this.LayoutSections["photo"] = theme + "/photo.html"
 	}
+
 	this.LayoutSections["right"] = theme + "/right.html"
+	if this.right != "" {
+		this.LayoutSections["right"] = theme + "/" + this.right
+	}
+
 	this.LayoutSections["foot"] = theme + "/foot.html"
 }
 

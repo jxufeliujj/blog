@@ -1,7 +1,6 @@
 package blog
 
 import (
-	"fmt"
 	"github.com/jxufeliujj/blog/models"
 	"strconv"
 	"strings"
@@ -57,7 +56,6 @@ func (this *MainController) BlogList() {
 	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
 		pagesize = 10
 	}
-	fmt.Println("进入BlogList", page)
 
 	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
@@ -73,13 +71,21 @@ func (this *MainController) BlogList() {
 	this.display("life")
 }
 
+//留言板
+func (this *MainController) Book() {
+	this.Data["class"] = "aboutcon"
+	this.setHeadMetas("留言板")
+	this.Data["css"] = "book"
+	this.right = "about.html"
+	this.display("book")
+}
+
 //文章显示
 func (this *MainController) Show() {
 	var (
 		post *models.Post = new(models.Post)
 		err  error
 	)
-	fmt.Println("进入Show")
 	urlname := this.Ctx.Input.Param(":urlname")
 	if urlname != "" {
 		post.Urlname = urlname

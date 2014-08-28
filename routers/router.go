@@ -20,6 +20,7 @@ func init() {
 
 	beego.Router("/life:page:int.html", &blog.MainController{}, "*:BlogList")
 	beego.Router("/life.html", &blog.MainController{}, "*:BlogList")
+	beego.Router("/book.html", &blog.MainController{}, "*:Book")
 
 	beego.Router("/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
 

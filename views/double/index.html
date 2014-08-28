@@ -12,4 +12,5 @@
       </ul>
       <p class="dateview"><span>{{date $v.Posttime "Y-m-j"}}</span><span>作者：{{$v.Author}}</span><span>所属标签：[{{str2html $v.TagsLink}}]</span></p>
   {{end}}
+  {{str2html .pagebar}}
 </div>

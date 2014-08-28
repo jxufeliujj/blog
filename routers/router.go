@@ -10,6 +10,8 @@ func init() {
 
 	//前台路由
 	beego.Router("/", &blog.MainController{}, "*:Index")
+	beego.Router("/recommend:page:int.html", &blog.MainController{}, "*:Index")
+
 	beego.Router("/article/:id:int", &blog.MainController{}, "*:Show")      //ID访问
 	beego.Router("/article/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问文章
 

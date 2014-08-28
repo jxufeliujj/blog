@@ -66,7 +66,7 @@ func (this *MainController) BlogList() {
 	this.Data["css"] = "life"
 	this.Data["class"] = "blogs"
 	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "life", "html", "").ToString()
-	this.setHeadMetas()
+	this.setHeadMetas("慢生活")
 	this.display("life")
 }
 
@@ -91,7 +91,7 @@ func (this *MainController) Mood() {
 //摄影
 func (this *MainController) Photo() {
 	this.Data["class"] = "aboutcon"
-	this.setHeadMetas("碎言碎语")
+	this.setHeadMetas("摄影作品")
 	this.Data["css"] = "mood"
 	this.right = ""
 	this.display("mood")

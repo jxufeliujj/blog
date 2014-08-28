@@ -14,6 +14,7 @@ type baseController struct {
 
 func (this *baseController) Prepare() {
 	this.options = models.GetOptions()
+	this.right = "right.html"
 	this.Data["options"] = this.options
 }
 
@@ -34,12 +35,9 @@ func (this *baseController) display(tpl string) {
 		this.LayoutSections["banner"] = theme + "/banner.html"
 		this.LayoutSections["photo"] = theme + "/photo.html"
 	}
-
-	this.LayoutSections["right"] = theme + "/right.html"
 	if this.right != "" {
 		this.LayoutSections["right"] = theme + "/" + this.right
 	}
-
 	this.LayoutSections["foot"] = theme + "/foot.html"
 }
 

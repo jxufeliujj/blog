@@ -80,6 +80,15 @@ func (this *MainController) Book() {
 	this.display("book")
 }
 
+//说说
+func (this *MainController) Mood() {
+	this.Data["class"] = "aboutcon"
+	this.setHeadMetas("碎言碎语")
+	this.Data["css"] = "mood"
+	this.right = ""
+	this.display("mood")
+}
+
 //文章显示
 func (this *MainController) Show() {
 	var (

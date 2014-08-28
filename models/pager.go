@@ -90,7 +90,6 @@ func (this *Pager) ToString() string {
 	}
 
 	buf.WriteString("<div class=\"page\">")
-	buf.WriteString(fmt.Sprintf("<a title=\"Total record\"><b>%d</b></a>", 107))
 	if this.Page > 1 {
 		buf.WriteString(fmt.Sprintf("<a href=\"%s\">&laquo;</a>", this.url(this.Page-1)))
 	} else {

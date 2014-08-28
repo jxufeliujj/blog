@@ -165,8 +165,6 @@ func (this *MainController) Archives() {
 		}
 	}
 
-	this.Data["page"] = page
-	this.Data["pagesize"] = pagesize
 	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "archives").ToString()
 	this.Data["result"] = result
 
@@ -227,8 +225,6 @@ func (this *MainController) Category() {
 	}
 
 	this.Data["tag"] = tag
-	this.Data["page"] = page
-	this.Data["pagesize"] = pagesize
 	this.Data["result"] = result
 	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "category/"+tag.Link()).ToString()
 

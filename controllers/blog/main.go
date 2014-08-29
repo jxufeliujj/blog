@@ -35,7 +35,7 @@ func (this *MainController) Index() {
 
 	this.Data["list"] = list
 	this.Data["css"] = "index"
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "recommend", "html", "").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/recommend%d.html").ToString()
 	this.setHeadMetas()
 	this.display("index")
 }
@@ -66,7 +66,7 @@ func (this *MainController) BlogList() {
 	this.Data["list"] = list
 	this.Data["css"] = "life"
 	this.Data["class"] = "blogs"
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "life", "html", "").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/life%d.html").ToString()
 	this.setHeadMetas("慢生活")
 	this.display("life")
 }
@@ -165,7 +165,7 @@ func (this *MainController) Archives() {
 		}
 	}
 
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "archives").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/archives/page/%d").ToString()
 	this.Data["result"] = result
 
 	this.setHeadMetas("归档")
@@ -180,16 +180,14 @@ func (this *MainController) Category() {
 		name     string
 		err      error
 		count    int64
-		result   map[string][]*models.Post
+		list     []*models.Post
 	)
 	name = this.Ctx.Input.Param(":name")
 	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
 		page = 1
 	}
 	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 20
-	} else {
-		pagesize *= 2
+		pagesize = 10
 	}
 
 	tagpost := new(models.TagPost)
@@ -202,32 +200,21 @@ func (this *MainController) Category() {
 
 	query := tagpost.Query().Filter("tagid", tag.Id).Filter("poststatus", 0)
 	count, _ = query.Count()
-	result = make(map[string][]*models.Post)
 	if count > 0 {
 		var tp []*models.TagPost
-		var list []*models.Post
 		var pids []int64 = make([]int64, 0)
-
 		query.OrderBy("-posttime").Limit(pagesize, (page-1)*pagesize).All(&tp)
 		for _, v := range tp {
 			pids = append(pids, v.Postid)
 		}
-
 		new(models.Post).Query().Filter("id__in", pids).All(&list)
-
-		for _, v := range list {
-			year := v.Posttime.Format("2006")
-			if _, ok := result[year]; !ok {
-				result[year] = make([]*models.Post, 0)
-			}
-			result[year] = append(result[year], v)
-		}
 	}
-
+	this.Data["css"] = "life"
+	this.Data["class"] = "blogs"
 	this.Data["tag"] = tag
-	this.Data["result"] = result
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "page", "", "category/"+tag.Link()).ToString()
+	this.Data["list"] = list
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/category/"+tag.Name+"/page/%d").ToString()
 
 	this.setHeadMetas(tag.Name, tag.Name, tag.Name)
-	this.display("category")
+	this.display("life")
 }

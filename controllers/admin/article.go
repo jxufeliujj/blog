@@ -57,7 +57,7 @@ func (this *ArticleController) List() {
 	this.Data["count_2"], _ = post.Query().Filter("status", 2).Count()
 	this.Data["status"] = status
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(page, count, pagesize, fmt.Sprintf("/admin/article/list?status=%d&searchtype=%s&keyword=%s", status, searchtype, keyword)).ToString()
+	this.Data["pagebar"] = models.NewPager(page, count, pagesize, fmt.Sprintf("/admin/article/list?status=%d&searchtype=%s&keyword=%s&page=%s", status, searchtype, keyword, "%d")).ToString()
 	this.display()
 }
 

@@ -11,55 +11,20 @@ type Pager struct {
 	Totalnum int64
 	Pagesize int64
 	urlpath  string
-	pre      string
-	ext      string
 }
 
-func NewPager(page, totalnum, pagesize int64, arg ...string) *Pager {
+func NewPager(page, totalnum, pagesize int64, urlpath string) *Pager {
 	p := new(Pager)
 	p.Page = page
 	p.Totalnum = totalnum
 	p.Pagesize = pagesize
-	p.pre = arg[0]
-	if len(arg) > 1 {
-		p.ext = arg[1]
-	}
-	if len(arg) > 2 {
-		p.urlpath = arg[2]
-	}
+	p.urlpath = urlpath
 	return p
 }
 
 func (this *Pager) url(page int64) string {
-	if this.urlpath != "" {
-		if this.ext != "" {
-			return fmt.Sprintf("/%s/%s%d.%s", this.urlpath, this.pre, page, this.ext)
-		} else {
-			return fmt.Sprintf("/%s/?%s=%d", this.urlpath, this.pre, page)
-		}
-
-	} else {
-
-		if this.ext != "" {
-			return fmt.Sprintf("/%s%d.%s", this.pre, page, this.ext)
-		} else {
-			return fmt.Sprintf("/?%s=%d", this.pre, page)
-		}
-	}
+	return fmt.Sprintf(this.urlpath, page)
 }
-
-// <div class="page">
-// <a title="Total record"><b>105</b></a>
-// <a href="/news/index.html"><<</a>
-// <a href="/news/index.html"><</a>
-// <a href="/news/index.html">1</a>
-// <b>2</b>
-// <a href="/news/index_3.html">3</a>
-// <a href="/news/index_4.html">4</a>
-// <a href="/news/index_5.html">5</a>
-// <a href="/news/index_3.html">></a>
-// <a href="/news/index_5.html">>></a>
-// </div>
 
 func (this *Pager) ToString() string {
 	if this.Totalnum <= this.Pagesize {

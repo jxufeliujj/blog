@@ -124,12 +124,8 @@ func (this *MainController) Show() {
 	pre, next := post.GetPreAndNext()
 	this.Data["post"] = post
 	this.Data["class"] = "blogs"
-	if pre != nil {
-		this.Data["pre"] = pre
-	}
-	if next != nil {
-		this.Data["next"] = next
-	}
+	this.Data["pre"] = pre
+	this.Data["next"] = next
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
 	this.Data["css"] = "new"
 	this.display("article")

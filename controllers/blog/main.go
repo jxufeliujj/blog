@@ -119,6 +119,7 @@ func (this *MainController) Show() {
 
 	post.Views++
 	post.Update("Views")
+	models.Cache.Delete("hotblog")
 
 	post.Content = strings.Replace(post.Content, "_ueditor_page_break_tag_", "", -1)
 	pre, next := post.GetPreAndNext()

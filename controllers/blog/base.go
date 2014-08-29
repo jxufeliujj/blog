@@ -16,6 +16,8 @@ func (this *baseController) Prepare() {
 	this.options = models.GetOptions()
 	this.right = "right.html"
 	this.Data["options"] = this.options
+	this.Data["latestblog"] = models.GetLatestBlog()
+	this.Data["hotblog"] = models.GetHotBlog()
 }
 
 func (this *baseController) display(tpl string) {

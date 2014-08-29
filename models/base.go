@@ -52,6 +52,34 @@ func GetOptions() map[string]string {
 	return v.(map[string]string)
 }
 
+func GetLatestBlog() []*Post {
+	if !Cache.IsExist("latestblog") {
+		var result []*Post
+		query := new(Post).Query().Filter("status", 0).Filter("urltype", 0)
+		count, _ := query.Count()
+		if count > 0 {
+			query.OrderBy("-posttime").Limit(8).All(&result)
+		}
+		Cache.Put("latestblog", result)
+	}
+	v := Cache.Get("latestblog")
+	return v.([]*Post)
+}
+
+func GetHotBlog() []*Post {
+	if !Cache.IsExist("hotblog") {
+		var result []*Post
+		query := new(Post).Query().Filter("status", 0).Filter("urltype", 0)
+		count, _ := query.Count()
+		if count > 0 {
+			query.OrderBy("-views").Limit(5).All(&result)
+		}
+		Cache.Put("hotblog", result)
+	}
+	v := Cache.Get("hotblog")
+	return v.([]*Post)
+}
+
 //返回带前缀的表名
 func TableName(str string) string {
 	return fmt.Sprintf("%s%s", beego.AppConfig.String("dbprefix"), str)

@@ -14,6 +14,12 @@ type ArticleController struct {
 	baseController
 }
 
+//添加
+func (this *ArticleController) Add() {
+	this.Data["posttime"] = this.getTime().Format("2006-01-02 15:04:05")
+	this.display()
+}
+
 //管理
 func (this *ArticleController) List() {
 	var (
@@ -58,12 +64,6 @@ func (this *ArticleController) List() {
 	this.Data["status"] = status
 	this.Data["list"] = list
 	this.Data["pagebar"] = models.NewPager(page, count, pagesize, fmt.Sprintf("/admin/article/list?status=%d&searchtype=%s&keyword=%s&page=%s", status, searchtype, keyword, "%d")).ToString()
-	this.display()
-}
-
-//添加
-func (this *ArticleController) Add() {
-	this.Data["posttime"] = this.getTime().Format("2006-01-02 15:04:05")
 	this.display()
 }
 
@@ -139,6 +139,7 @@ func (this *ArticleController) Save() {
 		post.Posttime = this.getTime()
 		post.Updated = this.getTime()
 		post.Insert()
+		models.Cache.Delete("latestblog")
 	} else {
 		post.Id = id
 		if post.Read() != nil {
@@ -196,6 +197,7 @@ func (this *ArticleController) Delete() {
 	if post.Read() == nil {
 		post.Delete()
 	}
+	models.Cache.Delete("latestblog")
 	this.Redirect("/admin/article/list", 302)
 }
 

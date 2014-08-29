@@ -121,9 +121,15 @@ func (this *MainController) Show() {
 	post.Update("Views")
 
 	post.Content = strings.Replace(post.Content, "_ueditor_page_break_tag_", "", -1)
-
+	pre, next := post.GetPreAndNext()
 	this.Data["post"] = post
 	this.Data["class"] = "blogs"
+	if pre != nil {
+		this.Data["pre"] = pre
+	}
+	if next != nil {
+		this.Data["next"] = next
+	}
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
 	this.Data["css"] = "new"
 	this.display("article")

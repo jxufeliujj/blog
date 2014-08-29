@@ -113,3 +113,17 @@ func (m *Post) Excerpt() string {
 	}
 	return m.Content
 }
+
+func (post *Post) GetPreAndNext() (pre, next *Post) {
+	pre = new(Post)
+	next = new(Post)
+	err := new(Post).Query().Filter("id__lt", post.Id).Filter("status", 0).Filter("urltype", 0).Limit(1).One(pre)
+	if err == orm.ErrNoRows {
+		pre = nil
+	}
+	err = new(Post).Query().Filter("id__gt", post.Id).Filter("status", 0).Filter("urltype", 0).Limit(1).One(next)
+	if err == orm.ErrNoRows {
+		next = nil
+	}
+	return
+}

@@ -82,10 +82,33 @@ func (this *MainController) Book() {
 
 //说说
 func (this *MainController) Mood() {
+	var (
+		list     []*models.Mood
+		pagesize int
+		err      error
+		page     int
+	)
+
+	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
+		page = 1
+	}
+
+	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
+		pagesize = 10
+	}
+
+	query := new(models.Mood).Query()
+	count, _ := query.Count()
+	if count > 0 {
+		query.OrderBy("-posttime").Limit(pagesize, (page-1)*pagesize).All(&list)
+	}
+
+	this.Data["list"] = list
 	this.Data["class"] = "aboutcon"
 	this.setHeadMetas("碎言碎语")
 	this.Data["css"] = "mood"
 	this.right = ""
+	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/mood%d.html").ToString()
 	this.display("mood")
 }
 

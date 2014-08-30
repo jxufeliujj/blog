@@ -5,7 +5,7 @@
   {{range $k, $v := .list}}
     
       <h3><a href="{{$v.Link}}">{{str2html $v.ColorTitle}}</a></h3>
-      <figure><img src="views/double/images/001.png"></figure>
+      <figure><img src="{{$v.Cover}}"></figure>
       <ul>
         <p>{{str2html $v.Excerpt}}</p>
         <a title="阅读全文" href="{{$v.Link}}" class="readmore">阅读全文>></a>

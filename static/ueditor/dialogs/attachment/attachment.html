@@ -115,6 +115,7 @@
                 str += "<p style='line-height: 16px;'><img src='"+ src + "' _src='"+src+"' />" +
                        "<a href='"+editor.options.filePath + ci.url+"'>" + ci.original + "</a></p>";
             }
+            editor.fireEvent('afterUpfile', filesList);
             editor.execCommand("insertHTML",str);
             swfupload.destroy();
         };

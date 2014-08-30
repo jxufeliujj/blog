@@ -89,6 +89,7 @@ func (this *ArticleController) Save() {
 		tags    string = strings.TrimSpace(this.GetString("tags"))
 		urlname string = strings.TrimSpace(this.GetString("urlname"))
 		color   string = strings.TrimSpace(this.GetString("color"))
+		cover   string = strings.TrimSpace(this.GetString("cover"))
 		timestr string = strings.TrimSpace(this.GetString("posttime"))
 		status  int64  = 0
 		istop   int8   = 0
@@ -112,7 +113,9 @@ func (this *ArticleController) Save() {
 	if status != 1 && status != 2 {
 		status = 0
 	}
-
+	if cover == "" {
+		cover = "/static/upload/defaultcover.png"
+	}
 	addtags := make([]string, 0)
 	//标签过滤
 	if tags != "" {
@@ -180,11 +183,12 @@ func (this *ArticleController) Save() {
 	post.Title = title
 	post.Color = color
 	post.Istop = istop
+	post.Cover = cover
 	post.Content = content
 	post.Urlname = urlname
 	post.Urltype = urltype
 	post.Updated = this.getTime()
-	post.Update("tags", "status", "title", "color", "istop", "content", "urlname", "urltype", "updated", "posttime")
+	post.Update("tags", "status", "title", "color", "cover", "istop", "content", "urlname", "urltype", "updated", "posttime")
 
 RD:
 	this.Redirect("/admin/article/list", 302)

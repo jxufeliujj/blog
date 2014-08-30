@@ -46,6 +46,11 @@ func init() {
 	beego.Router("/admin/article/upload", &admin.ArticleController{}, "*:Upload")
 	beego.Router("/admin/tag", &admin.TagController{}, "*:Index")
 
+	//说说管理
+	beego.Router("/admin/mood/add", &admin.MoodController{}, "*:Add")
+	beego.Router("/admin/mood/list", &admin.MoodController{}, "*:List")
+	beego.Router("/admin/mood/delete", &admin.MoodController{}, "*:Delete")
+
 	//用户管理
 	beego.Router("/admin/user/list", &admin.UserController{}, "*:List")
 	beego.Router("/admin/user/add", &admin.UserController{}, "*:Add")

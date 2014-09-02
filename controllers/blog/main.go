@@ -72,10 +72,17 @@ func (this *MainController) Mood() {
 
 //摄影
 func (this *MainController) Photo() {
+	var list []*models.Photo
+	query := new(models.Photo).Query().Filter("albumid", this.page)
+	count, _ := query.Count()
+	if count > 0 {
+		query.All(&list)
+	}
 	this.Data["class"] = "aboutcon"
 	this.setHeadMetas("摄影作品")
 	this.Data["css"] = "photo"
 	this.right = ""
+	this.Data["list"] = list
 	this.display("photo")
 }
 

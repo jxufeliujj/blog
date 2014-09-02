@@ -26,9 +26,11 @@ func init() {
 	beego.Router("/mood.html", &blog.MainController{}, "*:Mood")
 	beego.Router("/mood:page:int.html", &blog.MainController{}, "*:Mood")
 
-	// beego.Router("/photo.html", &blog.MainController{}, "*:Photo")
-	beego.Router("/book.html", &blog.MainController{}, "*:Book")
+	//照片展示
+	beego.Router("/photo.html", &blog.MainController{}, "*:Photo")
+	beego.Router("/photo:page:int.html", &blog.MainController{}, "*:Photo")
 
+	beego.Router("/book.html", &blog.MainController{}, "*:Book")
 	beego.Router("/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
 
 	//后台路由
@@ -53,6 +55,11 @@ func init() {
 	beego.Router("/admin/mood/add", &admin.MoodController{}, "*:Add")
 	beego.Router("/admin/mood/list", &admin.MoodController{}, "*:List")
 	beego.Router("/admin/mood/delete", &admin.MoodController{}, "*:Delete")
+
+	//相册管理
+	beego.Router("/admin/album/add", &admin.MoodController{}, "*:Add")
+	beego.Router("/admin/album/list", &admin.MoodController{}, "*:List")
+	beego.Router("/admin/album/edit", &admin.ArticleController{}, "*:Edit")
 
 	//用户管理
 	beego.Router("/admin/user/list", &admin.UserController{}, "*:List")

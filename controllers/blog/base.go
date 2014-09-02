@@ -3,13 +3,16 @@ package blog
 import (
 	"github.com/astaxie/beego"
 	"github.com/jxufeliujj/blog/models"
+	"strconv"
 	"strings"
 )
 
 type baseController struct {
 	beego.Controller
-	options map[string]string
-	right   string
+	options  map[string]string
+	right    string
+	page     int
+	pagesize int
 }
 
 func (this *baseController) Prepare() {
@@ -18,6 +21,22 @@ func (this *baseController) Prepare() {
 	this.Data["options"] = this.options
 	this.Data["latestblog"] = models.GetLatestBlog()
 	this.Data["hotblog"] = models.GetHotBlog()
+
+	var (
+		pagesize int
+		err      error
+		page     int
+	)
+
+	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
+		page = 1
+	}
+
+	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
+		pagesize = 10
+	}
+	this.page = page
+	this.pagesize = pagesize
 }
 
 func (this *baseController) display(tpl string) {
@@ -35,7 +54,7 @@ func (this *baseController) display(tpl string) {
 
 	if tpl == "index" {
 		this.LayoutSections["banner"] = theme + "/banner.html"
-		this.LayoutSections["photo"] = theme + "/photo.html"
+		this.LayoutSections["middle"] = theme + "/middle.html"
 	}
 	if this.right != "" {
 		this.LayoutSections["right"] = theme + "/" + this.right

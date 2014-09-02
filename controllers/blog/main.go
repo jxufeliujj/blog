@@ -12,61 +12,33 @@ type MainController struct {
 
 //首页, 只显示前N条
 func (this *MainController) Index() {
-	var (
-		list     []*models.Post
-		pagesize int
-		err      error
-		page     int
-	)
-
-	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
-		page = 1
-	}
-
-	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 10
-	}
-
+	var list []*models.Post
 	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
 	if count > 0 {
-		query.OrderBy("-istop", "-views").Limit(pagesize, (page-1)*pagesize).All(&list)
+		query.OrderBy("-istop", "-views").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 
 	this.Data["list"] = list
 	this.Data["css"] = "index"
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/recommend%d.html").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/recommend%d.html").ToString()
 	this.setHeadMetas()
 	this.display("index")
 }
 
 //blog分页显示
 func (this *MainController) BlogList() {
-	var (
-		list     []*models.Post
-		pagesize int
-		err      error
-		page     int
-	)
-
-	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
-		page = 1
-	}
-
-	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 10
-	}
-
+	var list []*models.Post
 	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
 	if count > 0 {
-		query.OrderBy("-istop", "-posttime").Limit(pagesize, (page-1)*pagesize).All(&list)
+		query.OrderBy("-istop", "-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 
 	this.Data["list"] = list
 	this.Data["css"] = "life"
 	this.Data["class"] = "blogs"
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/life%d.html").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/life%d.html").ToString()
 	this.setHeadMetas("慢生活")
 	this.display("life")
 }
@@ -82,25 +54,11 @@ func (this *MainController) Book() {
 
 //说说
 func (this *MainController) Mood() {
-	var (
-		list     []*models.Mood
-		pagesize int
-		err      error
-		page     int
-	)
-
-	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
-		page = 1
-	}
-
-	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 10
-	}
-
+	var list []*models.Mood
 	query := new(models.Mood).Query()
 	count, _ := query.Count()
 	if count > 0 {
-		query.OrderBy("-posttime").Limit(pagesize, (page-1)*pagesize).All(&list)
+		query.OrderBy("-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 
 	this.Data["list"] = list
@@ -108,7 +66,7 @@ func (this *MainController) Mood() {
 	this.setHeadMetas("碎言碎语")
 	this.Data["css"] = "mood"
 	this.right = ""
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/mood%d.html").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/mood%d.html").ToString()
 	this.display("mood")
 }
 
@@ -116,9 +74,9 @@ func (this *MainController) Mood() {
 func (this *MainController) Photo() {
 	this.Data["class"] = "aboutcon"
 	this.setHeadMetas("摄影作品")
-	this.Data["css"] = "mood"
+	this.Data["css"] = "photo"
 	this.right = ""
-	this.display("mood")
+	this.display("photo")
 }
 
 //文章显示
@@ -157,31 +115,14 @@ func (this *MainController) Show() {
 
 //历史归档
 func (this *MainController) Archives() {
-	var (
-		page     int
-		pagesize int
-		err      error
-		count    int64
-		result   map[string][]*models.Post
-	)
-
-	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
-		page = 1
-	}
-
-	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 20
-	} else {
-		pagesize *= 2
-	}
-
+	var result map[string][]*models.Post
+	this.pagesize *= 2
 	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
-
-	count, _ = query.Count()
+	count, _ := query.Count()
 	result = make(map[string][]*models.Post)
 	if count > 0 {
 		var list []*models.Post
-		query.OrderBy("-posttime").Limit(pagesize, (page-1)*pagesize).All(&list)
+		query.OrderBy("-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 		for _, v := range list {
 			year := v.Posttime.Format("2006")
 			if _, ok := result[year]; !ok {
@@ -191,7 +132,7 @@ func (this *MainController) Archives() {
 		}
 	}
 
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/archives/page/%d").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/archives/page/%d").ToString()
 	this.Data["result"] = result
 
 	this.setHeadMetas("归档")
@@ -200,36 +141,22 @@ func (this *MainController) Archives() {
 
 //分类查看
 func (this *MainController) Category() {
-	var (
-		page     int
-		pagesize int
-		name     string
-		err      error
-		count    int64
-		list     []*models.Post
-	)
-	name = this.Ctx.Input.Param(":name")
-	if page, err = strconv.Atoi(this.Ctx.Input.Param(":page")); err != nil || page < 1 {
-		page = 1
-	}
-	if pagesize, err = strconv.Atoi(this.getOption("pagesize")); err != nil || pagesize < 1 {
-		pagesize = 10
-	}
+	var list []*models.Post
 
 	tagpost := new(models.TagPost)
 	tag := new(models.Tag)
-	tag.Name = name
+	tag.Name = this.Ctx.Input.Param(":name")
 
 	if tag.Read("Name") != nil {
 		this.Abort("404")
 	}
 
 	query := tagpost.Query().Filter("tagid", tag.Id).Filter("poststatus", 0)
-	count, _ = query.Count()
+	count, _ := query.Count()
 	if count > 0 {
 		var tp []*models.TagPost
 		var pids []int64 = make([]int64, 0)
-		query.OrderBy("-posttime").Limit(pagesize, (page-1)*pagesize).All(&tp)
+		query.OrderBy("-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&tp)
 		for _, v := range tp {
 			pids = append(pids, v.Postid)
 		}
@@ -239,7 +166,7 @@ func (this *MainController) Category() {
 	this.Data["class"] = "blogs"
 	this.Data["tag"] = tag
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(page), int64(count), int64(pagesize), "/category/"+tag.Name+"/page/%d").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/category/"+tag.Name+"/page/%d").ToString()
 
 	this.setHeadMetas(tag.Name, tag.Name, tag.Name)
 	this.display("life")

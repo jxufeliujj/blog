@@ -1,15 +1,41 @@
-<div class="template">
-  <div class="box">
-    <h3>
-      <p><span>彩云之南</span>醉美 泸沽湖</p>
-    </h3>
-    <ul>
-      <li><a href="/photo.html" ><img src="{{.root}}images/1.jpg"></a><span>白马雪山垭口 海拔4292</span></li>
-      <li><a href="/photo.html" ><img src="{{.root}}images/2.jpg"></a><span>醉美泸沽湖 水天一色</span></li>
-      <li><a href="/photo.html" ><img src="{{.root}}images/3.jpg"></a><span>泛舟于清澈的湖水 波光粼粼</span></li>
-      <li><a href="/photo.html" ><img src="{{.root}}images/4.jpg"></a><span>草海 碧草蓝天</span></li>
-      <li><a href="/photo.html" ><img src="{{.root}}images/5.jpg"></a><span>滇藏线 在云端的感觉</span></li>
-      <li><a href="/photo.html" ><img src="{{.root}}images/6.jpg"></a><span>明永冰川 仰望蓝天</span></li>
-    </ul>
-  </div>
-</div>
+<style>
+      ul{
+      list-style: none outside none;
+        padding-left: 0;
+    }
+    .gallery li {
+      display: block;
+      float: left;
+      height: 200px;
+      margin-bottom: 6px;
+      margin-right: 6px;
+      width: 200px;
+    }
+    .gallery li a {
+      height: 100px;
+      width: 100px;
+    }
+    .gallery li a img {
+      max-width: 200px;
+    }
+</style>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script>
+<script src="/static/js/lightGallery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#auto-loop").lightGallery({
+        loop:true,
+        auto:true,
+        desc:true,
+        pause:3000
+      });
+    });
+</script>
+
+<ul id="auto-loop" class="gallery list-unstyled">
+        <li data-title="这是标题" data-src="11.jpg" data-responsive-src="thumb2.jpg"> 
+          <a href="#">
+            <img src="img1.jpg" />
+            </a> 
+        </li>
+    </ul> 

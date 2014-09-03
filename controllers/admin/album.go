@@ -10,7 +10,7 @@ type AlbumController struct {
 	baseController
 }
 
-//说说列表
+//相册列表
 func (this *AlbumController) List() {
 	var page int64
 	var pagesize int64 = 10

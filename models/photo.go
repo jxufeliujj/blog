@@ -12,6 +12,7 @@ type Photo struct {
 	Des      string    `orm:"size(100)"`
 	Posttime time.Time `orm:"type(datetime);index"`
 	Url      string    `orm:"size(50)"`
+	Small    string    `orm:"-"`
 }
 
 func (m *Photo) TableName() string {

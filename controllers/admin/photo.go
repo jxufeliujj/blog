@@ -2,7 +2,6 @@ package admin
 
 import (
 	"github.com/jxufeliujj/blog/models"
-	"strings"
 	"time"
 )
 
@@ -27,26 +26,30 @@ func (this *PhotoController) List() {
 }
 
 //上传照片
-func (this *PhotoController) Add() {
-	if this.Ctx.Request.Method == "POST" {
-		content := strings.TrimSpace(this.GetString("content"))
-		cover := strings.TrimSpace(this.GetString("cover"))
+func (this *PhotoController) Add(albumid int64, desc, url string) {
 
-		var photo models.Photo
-		photo.Name = content
-		photo.Cover = cover
-		photo.Posttime = time.Now()
-		if err := photo.Insert(); err != nil {
-			this.showmsg(err.Error())
-		}
-		this.Redirect("/admin/photo/list", 302)
-
+	var photo models.Photo
+	photo.Albumid = albumid
+	photo.Des = desc
+	photo.Posttime = time.Now()
+	photo.Url = url
+	if err := photo.Insert(); err != nil {
+		this.showmsg(err.Error())
 	}
-	this.display()
 }
 
 //删除照片
 func (this *PhotoController) Delete() {
+	id, _ := this.GetInt("id")
+	photo := models.Photo{Id: id}
+	if photo.Read() == nil {
+		photo.Delete()
+	}
+	this.Redirect("/admin/photo/list", 302)
+}
+
+//设置封面
+func (this *PhotoController) Cover() {
 	id, _ := this.GetInt("id")
 	photo := models.Photo{Id: id}
 	if photo.Read() == nil {

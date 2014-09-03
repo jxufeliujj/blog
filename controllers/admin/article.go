@@ -259,7 +259,6 @@ func (this *ArticleController) Upload() {
 	index, _ := strconv.Atoi(utype)
 
 	ext := strings.ToLower(header.Filename[strings.LastIndex(header.Filename, "."):])
-	savepath := pathArr[index] + time.Now().Format("20060102")
 	out := make(map[string]string)
 	out["url"] = ""
 	out["fileType"] = ext
@@ -268,6 +267,7 @@ func (this *ArticleController) Upload() {
 	if err != nil {
 		out["state"] = err.Error()
 	} else {
+		savepath := pathArr[index] + time.Now().Format("20060102")
 		if err = os.MkdirAll(savepath, os.ModePerm); err != nil {
 			out["state"] = err.Error()
 		} else {
@@ -294,9 +294,6 @@ func (this *ArticleController) Upload() {
 //上传照片)
 func (this *ArticleController) UploadPhoto() {
 	file, header, err := this.GetFile("upfile")
-	day := time.Now().Format("20060102")
-	t := time.Now().UnixNano()
-	filename := ""
 	ext := strings.ToLower(header.Filename[strings.LastIndex(header.Filename, "."):])
 	out := make(map[string]string)
 	out["url"] = ""
@@ -306,22 +303,31 @@ func (this *ArticleController) UploadPhoto() {
 	if err != nil {
 		out["state"] = err.Error()
 	} else {
+		t := time.Now().UnixNano()
+		day := time.Now().Format("20060102")
+		filename := ""
+		//小图
+		savepath := pathArr[2] + day
 		if err = os.MkdirAll(savepath, os.ModePerm); err != nil {
 			out["state"] = err.Error()
-		} else {
-			//小图
-			filename = fmt.Sprintf("%s/%d%s", pathArr[2]+day, t, ext)
-			err = createSmallPic(file, filename, 220, 150)
-			if err != nil {
-				out["state"] = err.Error()
-			}
-			//大图
-			filename = fmt.Sprintf("%s/%d%s", pathArr[1]+day, t, ext)
-			if err = this.SaveToFile("upfile", filename); err != nil {
-				out["state"] = err.Error()
-			}
-			out["url"] = filename[1:]
 		}
+		filename = fmt.Sprintf("%s/%d%s", savepath, t, ext)
+		err = createSmallPic(file, filename, 220, 150)
+		if err != nil {
+			out["state"] = err.Error()
+		}
+
+		//大图
+		savepath = pathArr[1] + day
+		if err = os.MkdirAll(savepath, os.ModePerm); err != nil {
+			out["state"] = err.Error()
+		}
+		filename = fmt.Sprintf("%s/%d%s", savepath, t, ext)
+		if err = this.SaveToFile("upfile", filename); err != nil {
+			out["state"] = err.Error()
+		}
+		out["url"] = filename[1:]
+
 	}
 	this.Data["json"] = out
 	this.ServeJson()

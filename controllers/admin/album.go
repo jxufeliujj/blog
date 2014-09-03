@@ -60,3 +60,8 @@ func (this *AlbumController) Delete() {
 	}
 	this.Redirect("/admin/album/list", 302)
 }
+
+//删除说说
+func (this *AlbumController) Edit() {
+
+}

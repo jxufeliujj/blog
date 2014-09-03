@@ -109,7 +109,7 @@
 	white-space: nowrap;
 }
 #lightGallery-slider .lightGallery-slide {
-	background: url(../img/loading.gif) no-repeat scroll center center transparent;
+	background: url(../images/loading.gif) no-repeat scroll center center transparent;
 	display: inline-block;
 	height: 100%;
 	line-height: 1px;

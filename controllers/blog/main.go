@@ -52,6 +52,14 @@ func (this *MainController) Book() {
 	this.display("book")
 }
 
+//留404页面
+func (this *MainController) Go404() {
+	this.Data["class"] = "blogs"
+	this.setHeadMetas("Sorry 404页面没找到")
+	this.Data["css"] = "life"
+	this.display("404")
+}
+
 //说说
 func (this *MainController) Mood() {
 	var list []*models.Mood
@@ -72,20 +80,23 @@ func (this *MainController) Mood() {
 
 //摄影
 func (this *MainController) Photo() {
-	var list []*models.Photo
-	query := new(models.Photo).Query().Filter("albumid", this.page)
-	count, _ := query.Count()
-	if count > 0 {
-		query.All(&list)
+	album := new(models.Album)
+	album.Id = int64(this.page)
+	err := album.Read()
+	if err != nil || album.Ishide != 0 {
+		this.Redirect("/404.html", 302)
 	}
+	this.setHeadMetas("相册 " + album.Name + " 内的照片")
+	var list []*models.Photo
+	new(models.Photo).Query().Filter("albumid", this.page).All(&list)
 	this.Data["class"] = "aboutcon"
-	this.setHeadMetas("摄影作品")
 	this.Data["css"] = "photo"
 	this.right = ""
 	for _, v := range list {
 		v.Small = strings.Replace(v.Url, "bigpic", "smallpic", 1)
 	}
 	this.Data["list"] = list
+
 	this.display("photo")
 }
 
@@ -105,7 +116,7 @@ func (this *MainController) Show() {
 		err = post.Read()
 	}
 	if err != nil || post.Status != 0 {
-		this.Abort("404")
+		this.Redirect("/404.html", 302)
 	}
 
 	post.Views++

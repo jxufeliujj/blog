@@ -49,7 +49,6 @@ func init() {
 	beego.Router("/admin/article/delete", &admin.ArticleController{}, "*:Delete")
 	beego.Router("/admin/article/batch", &admin.ArticleController{}, "*:Batch")
 	beego.Router("/admin/article/upload", &admin.ArticleController{}, "*:Upload")
-	beego.Router("/admin/article/uploadphoto", &admin.ArticleController{}, "*:UploadPhoto")
 	beego.Router("/admin/tag", &admin.TagController{}, "*:Index")
 
 	//说说管理
@@ -63,9 +62,10 @@ func init() {
 	beego.Router("/admin/album/edit", &admin.AlbumController{}, "*:Edit")
 
 	//照片管理
-	beego.Router("/admin/photo/add", &admin.PhotoController{}, "*:Add")
 	beego.Router("/admin/photo/list", &admin.PhotoController{}, "*:List")
 	beego.Router("/admin/photo/cover", &admin.PhotoController{}, "*:Cover")
+	beego.Router("/admin/photo/delete", &admin.PhotoController{}, "*:Delete")
+	beego.Router("/admin/photo/uploadphoto", &admin.PhotoController{}, "*:UploadPhoto")
 
 	//用户管理
 	beego.Router("/admin/user/list", &admin.UserController{}, "*:List")

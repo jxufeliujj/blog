@@ -82,6 +82,9 @@ func (this *MainController) Photo() {
 	this.setHeadMetas("摄影作品")
 	this.Data["css"] = "photo"
 	this.right = ""
+	for _, v := range list {
+		v.Small = strings.Replace(v.Url, "bigpic", "smallpic", 1)
+	}
 	this.Data["list"] = list
 	this.display("photo")
 }

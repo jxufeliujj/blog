@@ -11,7 +11,7 @@ type Album struct {
 	Name     string    `orm:"size(100)"`
 	Cover    string    `orm:"size(50)"`
 	Posttime time.Time `orm:"type(datetime);index"`
-	IsHide   int8
+	Ishide   int8
 }
 
 func (m *Album) TableName() string {

@@ -22,7 +22,8 @@
         {{range $k, $v := .list}}
             <li data-desc="{{$v.Des}}" data-src="{{$v.Url}}"> 
               <a href="#">
-                <img src="{{$v.Url}}" />
+                <img src="{{$v.Small}}" />
+                <span>{{$v.Des}}</span>
               </a> 
             </li>
        {{end}}

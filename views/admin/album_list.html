@@ -1,24 +1,28 @@
 <fieldset>
-	<legend>说说列表</legend>
+	<legend>相册列表</legend>
 
 	<table class="table table-hover table-list">
 		<thead>
 		<tr>
 			<th width="30">ID</th>
-			<th width="150">时间</th>
-			<th>内容</th>
-			<th width="150">图片</th>
+			<th width="150">相册名</th>
+			<th width="150">创建时间</th>
+			<th width="150">封面</th>
 		</tr>
 		</thead>
 		<tbody>
 		{{range $k, $v := .list}}
 			<tr>
 				<td>{{$v.Id}}</td>
+				<td>{{$v.Name}}</td>
 				<td>{{date $v.Posttime "Y-m-d H:i:s"}}</td>
-				<td>{{str2html $v.Content}}</td>
-				<td><img src="{{$v.Cover}}" width = "170" height="80" /></td>
 				<td>
-				<a href="/admin/mood/delete?id={{$v.Id}}" onclick="return del_confirm()">删除</a>
+					<a href="/admin/photo/list?albumid={{$v.Id}}">
+						<img src="{{$v.Cover}}" width = "170" height="80" />
+					</a>
+				</td>
+				<td>
+				<a href="/admin/album/delete?id={{$v.Id}}" onclick="return del_confirm()">删除</a>
 				</td>
 			</tr>
 		{{end}}
@@ -29,5 +33,4 @@
 			</tr>
 		</tfoot>
 	</table>
-
 </fieldset>

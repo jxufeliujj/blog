@@ -37,6 +37,9 @@
 }
 /** / End of font-icons /**/
 
+
+
+
 .lightGallery {
 	overflow: hidden!important;
 }
@@ -106,7 +109,7 @@
 	white-space: nowrap;
 }
 #lightGallery-slider .lightGallery-slide {
-	background: url(../images/loading.gif) no-repeat scroll center center transparent;
+	background: url(../img/loading.gif) no-repeat scroll center center transparent;
 	display: inline-block;
 	height: 100%;
 	line-height: 1px;
@@ -554,53 +557,3 @@
 	text-decoration: none;
 	background-color: #000;
 }
-
-h1.t_nav span{float:right; color:#999}
-h1.t_nav { border-bottom: #F1F1F1 1px solid; font-size: 12px; font-weight: normal; line-height: 40px; height: 40px; }
-h1.t_nav a { width: 100px; display: block; text-align: center; color: #fff; float: left }
-.n1 { background: #5EA51B; }
-.n2 { background: #8BBF5D; }
-.moodlist { margin: auto; width: 100%; overflow: hidden }
-
-ul{
-      list-style: none outside none;
-        padding-left: 0;
-    }
-    .gallery li {
-      display: block;
-      float: left;
-      height: 150px;
-      margin-bottom: 40px;
-      margin-right: 10px;
-      width: 220px;
-    }
-    .gallery li a {
-      height: 100px;
-      width: 100px;
-    }
-    .gallery li a img {
-      max-width: 220px;
-    }
-
-	.gallery li a span {
-      width: 220px;
-      height:30px;
-      line-height:30px;
-      text-align:center;
-      float:left;
-      font-size:15px;
-      background-color:#F3F3FA
-    }
-    .photolist {
-      float: left;
-      margin: 2px;
-      padding: 40px 2px 10px 10px;
-      text-align: left;
-    }
-    .comments {
-      float: left;
-      margin: 2px;
-      padding: 4px 2px 10px 10px;
-      text-align: left;
-      width: 920px;
-    }

@@ -32,14 +32,14 @@ func (this *AlbumController) List() {
 	this.display()
 }
 
-//发表说说
+//创建相册
 func (this *AlbumController) Add() {
 	if this.Ctx.Request.Method == "POST" {
-		content := strings.TrimSpace(this.GetString("content"))
 		cover := strings.TrimSpace(this.GetString("cover"))
+		albumname := strings.TrimSpace(this.GetString("albumname"))
 
 		var album models.Album
-		album.Name = content
+		album.Name = albumname
 		album.Cover = cover
 		album.Posttime = time.Now()
 		if err := album.Insert(); err != nil {

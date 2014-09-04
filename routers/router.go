@@ -31,6 +31,10 @@ func init() {
 	beego.Router("/photo.html", &blog.MainController{}, "*:Photo")
 	beego.Router("/photo:page:int.html", &blog.MainController{}, "*:Photo")
 
+	//相册展示
+	beego.Router("/album.html", &blog.MainController{}, "*:Album")
+	beego.Router("/album:page:int.html", &blog.MainController{}, "*:Album")
+
 	beego.Router("/book.html", &blog.MainController{}, "*:Book")
 	beego.Router("/:urlname(.+)", &blog.MainController{}, "*:Show") //别名访问
 

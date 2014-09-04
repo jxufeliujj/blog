@@ -78,7 +78,7 @@ func (this *MainController) Mood() {
 	this.display("mood")
 }
 
-//摄影
+//照片展示
 func (this *MainController) Photo() {
 	album := new(models.Album)
 	album.Id = int64(this.page)
@@ -89,6 +89,28 @@ func (this *MainController) Photo() {
 	this.setHeadMetas("相册 " + album.Name + " 内的照片")
 	var list []*models.Photo
 	new(models.Photo).Query().Filter("albumid", this.page).All(&list)
+	this.Data["class"] = "aboutcon"
+	this.Data["css"] = "photo"
+	this.right = ""
+	for _, v := range list {
+		v.Small = strings.Replace(v.Url, "bigpic", "smallpic", 1)
+	}
+	this.Data["list"] = list
+
+	this.display("photo")
+}
+
+//相册展示
+func (this *MainController) Album() {
+	album := new(models.Album)
+	album.Id = int64(this.page)
+	err := album.Read()
+	if err != nil || album.Ishide != 0 {
+		this.Redirect("/404.html", 302)
+	}
+	this.setHeadMetas("摄影作品")
+	var list []*models.Album
+	new(models.Album).Query().Filter("albumid", this.page).All(&list)
 	this.Data["class"] = "aboutcon"
 	this.Data["css"] = "photo"
 	this.right = ""

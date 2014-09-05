@@ -1,0 +1,33 @@
+
+<script>
+  $(document).ready(function() {
+    $("#auto-loop").lightGallery({
+        loop:true,
+        auto:true,
+        desc:true,
+        counter:true,
+        pause:3000
+      });
+    });
+</script>
+
+<h1 class="t_nav">
+  <span>每一个瞬间的摄影，都是无法复摹独一无二的</span>
+  <a href="/" class="n1">网站首页</a>
+  <a href="/album.html" class="n2">相册列表</a>
+</h1>
+<div class="photolist">
+    <ul id="auto-loop" class="gallery list-unstyled">
+        {{range $k, $v := .list}}
+            <li> 
+              <a href="/photo{{$v.Id}}.html">
+                <img src="{{$v.Cover}}" />
+                <span>{{$v.Name}}</span>
+              </a> 
+            </li>
+       {{end}}
+    </ul>
+</div>
+<div class="comments">
+    <div class="ds-thread"></div>
+</div>

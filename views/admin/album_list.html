@@ -8,6 +8,7 @@
 			<th width="150">相册名</th>
 			<th width="150">创建时间</th>
 			<th width="150">封面</th>
+			<th width="150">操作</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -22,7 +23,13 @@
 					</a>
 				</td>
 				<td>
-				<a href="/admin/album/delete?id={{$v.Id}}" onclick="return del_confirm()">删除</a>
+				{{if $v.Ishide}}
+					<a href="/admin/album/delete?albumid={{$v.Id}}&ishide=0" >显示</a>
+				{{else}}
+					<a href="/admin/album/delete?albumid={{$v.Id}}&ishide=1" >隐藏</a>
+				{{end}}
+				|
+				<a href="/admin/album/edit?albumid={{$v.Id}}" >修改</a>
 				</td>
 			</tr>
 		{{end}}

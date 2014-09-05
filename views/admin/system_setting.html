@@ -10,9 +10,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th class="span2">博主昵称</th>
+				<th>副标题</th>
 				<td>
-					<input name="nickname" value="{{.options.nickname}}" class="input-xlarge" title="博主昵称" type="text" />
+					<input name="subtitle" value="{{.options.subtitle}}" class="input-xlarge" title="副标题" type="text" />
 				</td>
 			</tr>
 			<tr>
@@ -40,33 +40,15 @@
 				</td>
 			</tr>
 			<tr>
-				<th>facebook</th>
-				<td>
-					<input name="facebook" value="{{.options.facebook}}" class="input-xlarge" title="facebook" type="text" />
-				</td>
-			</tr>
-			<tr>
-				<th>twitter</th>
-				<td>
-					<input name="twitter" value="{{.options.twitter}}" class="input-xlarge" title="twitter" type="text" />
-				</td>
-			</tr>
-			<tr>
-				<th>副标题</th>
-				<td>
-					<input name="subtitle" value="{{.options.subtitle}}" class="input-xlarge" title="副标题" type="text" />
-				</td>
-			</tr>
-			<tr>
-				<th>邮箱</th>
-				<td>
-					<input name="email" value="{{.options.email}}" class="input-xlarge" title="联系邮箱" type="text" />
-				</td>
-			</tr>
-			<tr>
 				<th>列表每页数量</th>
 				<td>
 					<input name="pagesize" value="{{.options.pagesize}}" class="input" title="内容列表每页数量" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>每页相册数量</th>
+				<td>
+					<input name="albumsize" value="{{.options.albumsize}}" class="input" title="内容列表每页数量" type="text" />
 				</td>
 			</tr>
 			<tr>

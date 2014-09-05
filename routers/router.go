@@ -65,6 +65,7 @@ func init() {
 	beego.Router("/admin/album/add", &admin.AlbumController{}, "*:Add")
 	beego.Router("/admin/album/list", &admin.AlbumController{}, "*:List")
 	beego.Router("/admin/album/edit", &admin.AlbumController{}, "*:Edit")
+	beego.Router("/admin/album/delete", &admin.AlbumController{}, "*:Delete")
 
 	//照片管理
 	beego.Router("/admin/photo/list", &admin.PhotoController{}, "*:List")

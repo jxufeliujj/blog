@@ -102,24 +102,23 @@ func (this *MainController) Photo() {
 
 //相册展示
 func (this *MainController) Album() {
-	album := new(models.Album)
-	album.Id = int64(this.page)
-	err := album.Read()
-	if err != nil || album.Ishide != 0 {
-		this.Redirect("/404.html", 302)
+	pagesize, _ := strconv.Atoi(this.getOption("albumsize"))
+	if pagesize < 1 {
+		pagesize = 9
+	}
+	var list []*models.Album
+	query := new(models.Album).Query().Filter("ishide", 0)
+	count, _ := query.Count()
+	if count > 0 {
+		query.OrderBy("-posttime").Limit(pagesize, (this.page-1)*pagesize).All(&list)
 	}
 	this.setHeadMetas("摄影作品")
-	var list []*models.Album
-	new(models.Album).Query().Filter("albumid", this.page).All(&list)
 	this.Data["class"] = "aboutcon"
 	this.Data["css"] = "photo"
 	this.right = ""
-	for _, v := range list {
-		v.Small = strings.Replace(v.Url, "bigpic", "smallpic", 1)
-	}
 	this.Data["list"] = list
-
-	this.display("photo")
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(pagesize), "/album%d.html").ToString()
+	this.display("album")
 }
 
 //文章显示

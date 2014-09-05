@@ -2,6 +2,7 @@ package admin
 
 import (
 	"github.com/jxufeliujj/blog/models"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -22,9 +23,10 @@ func (this *AlbumController) List() {
 	}
 	offset := (page - 1) * pagesize
 
-	count, _ := album.Query().Count()
+	query := album.Query()
+	count, _ := query.Count()
 	if count > 0 {
-		album.Query().OrderBy("-id").Limit(pagesize, offset).All(&list)
+		query.OrderBy("-id").Limit(pagesize, offset).All(&list)
 	}
 
 	this.Data["list"] = list
@@ -51,17 +53,34 @@ func (this *AlbumController) Add() {
 	this.display()
 }
 
-//删除说说
+//删除相册
 func (this *AlbumController) Delete() {
-	id, _ := this.GetInt("id")
+	id, _ := this.GetInt("albumid")
 	album := models.Album{Id: id}
-	if album.Read() == nil {
-		album.Delete()
+	h, _ := strconv.Atoi(this.GetString("ishide"))
+	album.Ishide = int8(h)
+	if err := album.Update("ishide"); err != nil {
+		this.showmsg(err.Error())
+		return
 	}
 	this.Redirect("/admin/album/list", 302)
 }
 
-//删除说说
+//修改
 func (this *AlbumController) Edit() {
-
+	id, _ := this.GetInt("albumid")
+	album := models.Album{Id: id}
+	if album.Read() != nil {
+		this.Abort("404")
+	}
+	if this.Ctx.Request.Method == "POST" {
+		cover := this.GetString("cover")
+		name := this.GetString("albumname")
+		album.Cover = cover
+		album.Name = name
+		album.Update()
+		this.Redirect("/admin/album/list", 302)
+	}
+	this.Data["album"] = album
+	this.display()
 }

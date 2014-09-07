@@ -9,6 +9,7 @@
     <p class="box_c">
     	<span class="d_time">发布时间：{{date .post.Posttime "Y-m-j"}}</span>
     	<span>编辑：{{.post.Author}}</span>
+        <span>阅读：{{.post.Views}}</span>
     </p>
     <ul class="infos">
      	{{str2html .post.Content}}

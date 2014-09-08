@@ -9,7 +9,7 @@ import (
 type Mood struct {
 	Id       int64
 	Content  string    `orm:"type(text)"`
-	Cover    string    `orm:"size(50)"`
+	Cover    string    `orm:"size(70)"`
 	Posttime time.Time `orm:"type(datetime);index"`
 }
 

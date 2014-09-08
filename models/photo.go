@@ -11,7 +11,7 @@ type Photo struct {
 	Albumid  int64
 	Des      string    `orm:"size(100)"`
 	Posttime time.Time `orm:"type(datetime);index"`
-	Url      string    `orm:"size(50)"`
+	Url      string    `orm:"size(70)"`
 	Small    string    `orm:"-"`
 }
 

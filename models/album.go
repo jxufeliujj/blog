@@ -9,7 +9,7 @@ import (
 type Album struct {
 	Id       int64
 	Name     string    `orm:"size(100)"`
-	Cover    string    `orm:"size(50)"`
+	Cover    string    `orm:"size(70)"`
 	Posttime time.Time `orm:"type(datetime);index"`
 	Ishide   int8
 }

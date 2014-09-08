@@ -23,7 +23,7 @@ type Post struct {
 	Status   int8
 	Updated  time.Time `orm:"type(datetime)"`
 	Istop    int8
-	Cover    string `orm:"size(25)"`
+	Cover    string `orm:"size(70)"`
 }
 
 func (m *Post) TableName() string {

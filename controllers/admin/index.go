@@ -14,7 +14,6 @@ type IndexController struct {
 func (this *IndexController) Index() {
 
 	this.Data["hostname"], _ = os.Hostname()
-	this.Data["version"] = beego.AppConfig.String("AppVer")
 	this.Data["gover"] = runtime.Version()
 	this.Data["os"] = runtime.GOOS
 	this.Data["cpunum"] = runtime.NumCPU()

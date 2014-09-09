@@ -14,7 +14,7 @@ type AlbumController struct {
 //相册列表
 func (this *AlbumController) List() {
 	var page int64
-	var pagesize int64 = 10
+	var pagesize int64 = 6
 	var list []*models.Album
 	var album models.Album
 
@@ -26,7 +26,7 @@ func (this *AlbumController) List() {
 	query := album.Query()
 	count, _ := query.Count()
 	if count > 0 {
-		query.OrderBy("-id").Limit(pagesize, offset).All(&list)
+		query.OrderBy("-rank", "-posttime").Limit(pagesize, offset).All(&list)
 	}
 
 	this.Data["list"] = list
@@ -37,12 +37,11 @@ func (this *AlbumController) List() {
 //创建相册
 func (this *AlbumController) Add() {
 	if this.Ctx.Request.Method == "POST" {
-		cover := strings.TrimSpace(this.GetString("cover"))
-		albumname := strings.TrimSpace(this.GetString("albumname"))
-
+		rank, _ := this.GetInt("rank")
 		var album models.Album
-		album.Name = albumname
-		album.Cover = cover
+		album.Name = strings.TrimSpace(this.GetString("albumname"))
+		album.Cover = strings.TrimSpace(this.GetString("cover"))
+		album.Rank = int8(rank)
 		album.Posttime = time.Now()
 		if err := album.Insert(); err != nil {
 			this.showmsg(err.Error())
@@ -74,10 +73,10 @@ func (this *AlbumController) Edit() {
 		this.Abort("404")
 	}
 	if this.Ctx.Request.Method == "POST" {
-		cover := this.GetString("cover")
-		name := this.GetString("albumname")
-		album.Cover = cover
-		album.Name = name
+		rank, _ := this.GetInt("rank")
+		album.Cover = this.GetString("cover")
+		album.Name = this.GetString("albumname")
+		album.Rank = int8(rank)
 		album.Update()
 		this.Redirect("/admin/album/list", 302)
 	}

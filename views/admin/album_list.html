@@ -7,8 +7,9 @@
 			<th width="30">ID</th>
 			<th width="150">相册名</th>
 			<th width="150">创建时间</th>
+			<th width="50">排序值</th>
 			<th width="150">封面</th>
-			<th width="150">操作</th>
+			<th width="100">操作</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -17,6 +18,7 @@
 				<td>{{$v.Id}}</td>
 				<td>{{$v.Name}}</td>
 				<td>{{date $v.Posttime "Y-m-d H:i:s"}}</td>
+				<td>{{$v.Rank}}</td>
 				<td>
 					<a href="/admin/photo/list?albumid={{$v.Id}}">
 						<img src="{{$v.Cover}}" width = "170" height="80" />

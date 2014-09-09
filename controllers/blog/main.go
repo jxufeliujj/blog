@@ -104,13 +104,13 @@ func (this *MainController) Photo() {
 func (this *MainController) Album() {
 	pagesize, _ := strconv.Atoi(this.getOption("albumsize"))
 	if pagesize < 1 {
-		pagesize = 9
+		pagesize = 12
 	}
 	var list []*models.Album
 	query := new(models.Album).Query().Filter("ishide", 0)
 	count, _ := query.Count()
 	if count > 0 {
-		query.OrderBy("-posttime").Limit(pagesize, (this.page-1)*pagesize).All(&list)
+		query.OrderBy("-rank", "-posttime").Limit(pagesize, (this.page-1)*pagesize).All(&list)
 	}
 	this.setHeadMetas("摄影作品")
 	this.Data["class"] = "aboutcon"

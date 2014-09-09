@@ -5,11 +5,17 @@
 		<tbody>
 			<tr>
 				<th>相册封面</th>
-			            <td>
-			            	<input type="text" id="picture" name="cover" value="{{.album.Cover}}" />
-			            	<a href="javascript:void(0);" onclick="upImage();">上传图片</a>
-			            	<img id="preview" src="{{.album.Cover}}" width = "100" height="80" />
-			            </td>
+	            <td>
+	            	<input type="text" id="picture" name="cover" value="{{.album.Cover}}" />
+	            	<a href="javascript:void(0);" onclick="upImage();">上传图片</a>
+	            	<img id="preview" src="{{.album.Cover}}" width = "100" height="80" />
+	            </td>
+			</tr>
+			<tr>
+				<th>展示排序</th>
+	            <td>
+	            	<input type="text" name="rank" value="{{.album.Rank}}"/>值越大越排前
+	            </td>
 			</tr>
 			<tr>
 				<th>相册名称</th>

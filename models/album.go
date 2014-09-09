@@ -13,6 +13,7 @@ type Album struct {
 	Posttime time.Time `orm:"type(datetime);index"`
 	Ishide   int8
 	Rank     int8
+	Photonum int64
 }
 
 func (m *Album) TableName() string {

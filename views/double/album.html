@@ -21,7 +21,9 @@
         {{range $k, $v := .list}}
             <li> 
               <a href="/photo{{$v.Id}}.html">
-                <img src="{{$v.Cover}}" />
+                <div class="box1" style="background:url({{$v.Cover}});">
+                    <div class="box2"><font size=6 face="Times" color="white">{{$v.Photonum}}</font></div>
+                </div>
                 <span>{{$v.Name}}</span>
               </a> 
             </li>

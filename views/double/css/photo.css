@@ -570,8 +570,8 @@ ul{
       display: block;
       float: left;
       height: 150px;
-      margin-bottom: 40px;
-      margin-right: 10px;
+      margin-bottom: 50px;
+      margin-right: 20px;
       width: 220px;
     }
     .gallery li a {
@@ -604,3 +604,6 @@ ul{
       text-align: left;
       width: 920px;
     }
+
+    .box1 {width:220px;height:150px;position:relative;}
+	.box2 {width:50px; height:35px; position:absolute;bottom:0;right:0;text-align:right;}

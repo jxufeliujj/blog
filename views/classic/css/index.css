@@ -1,0 +1,56 @@
+@charset "gb2312";
+/* CSS Document */
+body,ul,div,img,h5,h4,h3,h2,h1,p,span,table,figure,i,li{ margin:0; padding:0}
+a:link, a:visited {text-decoration: none; } 
+a{-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; -ms-transition: all 0.5s;}
+img{ border:0}
+body{font-size:12px;background:#E8DFD8 url(../images/top.jpg)  50% top scroll no-repeat;color:#5d5d5d; } 
+.blank{ height:5px; overflow:hidden; width:100%; margin:auto; clear:both}
+article{width:1030px;margin:0 auto;  overflow:auto;background:url(../images/sidebg.png) 630px bottom no-repeat }
+header{ padding:40px 0; width:1000px;  margin:auto; }
+header h1{ font-size:22px; text-shadow:#fff 1px 1px 1px; }
+header h1 a{color:#000;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s;}
+header h1 a:hover{ padding-left:20px}
+header p{margin:17px 0 0 0;text-shadow:#000 1px 1px 1px;color:#fff}
+.navswf{ position:relative; width:1000px; margin:auto}
+#nav{
+	width: 873px;
+	line-height: 40px;
+	height: 40px;
+	margin: auto;
+	position: absolute;
+	left: 62px;
+	top: 30px;
+}/* navÔ²½Ç±³¾° rgba Í¸Ã÷¶È0.2 */
+#nav ul{ list-style:none; margin:auto; width:1030px}
+#nav ul li{ float:left; width:80px; text-align:center;text-shadow:#333 1px 1px 1px}
+#nav ul li a{ display:block; color:#FFF; }/* ±³¾°ÑÕÉ«¹ý¶ÉÐ§¹û */
+#nav ul li a:hover{  color: #FFF; font-weight:bold;}
+#nav ul li a#nav_current {color: #FFF; font-weight:bold; border-radius:50px 0} /* nav¸ßÁÁÏÔÊ¾±³¾°ÑÕÉ« */
+.content{ width:745px; float:left; }/* left form */
+/* bloglist index */
+.bloglist{ width:99%; margin:20px 5px 20px 5px;clear:both; overflow:hidden; }
+.bloglist h2{ background: url(../images/blogbgs.png) no-repeat right; line-height:29px; height:29px; font-size:14px; color:#3b3b3b; padding:10px 0 10px 20px;}
+.bloglist h2 a{color: #333; display:block;}
+.bloglist h2 a:hover{cursor:pointer; text-shadow:#fff 1px 1px 1px;padding-left:20px}
+.bloglist ul{ line-height:24px; padding:10px; margin-bottom:10px; background:rgba(255,255,255,0.5);  border-radius:10px}
+.bloglist ul p{ text-indent:2em}
+.bloglist figure{ text-align:center}
+.dateview{ border:#ccc 1px dashed; line-height:24px; height:24px; color:#666; margin:0 10px}
+.dateview a{color:#838383;}
+.dateview a:hover{ color:#333;}
+.dateview span{ margin:0 10px}
+/* Side Right */
+aside{ width:276px; float:right; overflow:hidden; }
+.vcard{ margin:10px 0; padding:10px} /* ¸öÈË¼ò½é google vcard */
+.vcard p{ line-height:25px}
+.vcard p a{ color:#099;text-decoration:underline}
+aside h2{  border-bottom:#FFF 1px solid; width:100%;overflow:hidden; font-size:14px; margin:10px 0; font-family:"Î¢ÈíÑÅºÚ"}
+aside h2 p{ background:#333; width:180px; height:25px; margin:15px 0 0 10px; line-height:25px; height:25px; color:#fff; text-align:center; box-shadow: #999 4px 5px 1px;}
+.news{ padding:10px; list-style:none;}
+.news li{ overflow: hidden;white-space: nowrap;text-overflow: ellipsis; background:url(../images/list.gif) left no-repeat; padding-left:20px}
+.news li a{ color: #666;display:block;line-height:22px; height:22px}
+.news li a:hover{color:#000; padding-left:20px; }
+/* footer */
+#copright{ line-height:40px; height:40px; text-align:center; width:100%;color:#fff; font-family:'Arizonia', cursive; font-size:20px; text-shadow:#000 1px 1px 1px}
+#copright a{color:#fff}

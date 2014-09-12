@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="gb2312">
+  <title>{{.title}}</title>
+  <meta name="keywords" content="{{.keywords}}">
+  <meta name="description" content="{{.description}}">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <link href="{{.root}}css/index.css" rel="stylesheet">
+  <link href="{{.root}}css/{{.css}}.css" rel="stylesheet">
+  {{str2html .hidejs}}
+</head>
+<body>
+  {{.head}}
+  {{.middle}}
+  {{.banner}}
+  <article>
+      {{.LayoutContent}}
+      {{.right}}
+  </article>
+  {{.foot}}
+</body>
+</html>

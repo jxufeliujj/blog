@@ -1,0 +1,84 @@
+
+/* CSS Document */
+* { margin: 0; padding: 0 }
+body { font: 12px "宋体", Arial, Helvetica, sans-serif; color: #756F71 }
+img { border: 0; display: block }
+ul { list-style: none; }
+a:link, a:visited {text-decoration: none; color: #333;}
+.left { float: left; }
+.right { float: right; }
+.blank { height: 5px; overflow: hidden; width: 100%; margin: auto; clear: both }
+.box{ width:1000px; margin:auto; overflow:hidden}
+header { width: 1000px; margin: auto; height: 80px; position: relative; overflow: hidden }
+#logo a { width: 260px; height: 60px; margin: 10px 0 0 0; position: absolute; background: url(../images/logo.png) no-repeat; display: block }
+nav { float: right; width: 100%; margin: 30px 0 0 0; text-align: right }
+nav a { position: relative; display: inline-block; font-size: 18px; font-family: "微软雅黑", Arial, Helvetica, sans-serif; }
+nav a:hover { text-decoration: none }
+.topnav a { margin: 0 5px; padding: 0 8px; }
+.topnav a span:first-child { z-index: 2; display: block; }
+.topnav a span:last-child { z-index: 1; display: block; color: #999; font: 12px Georgia, serif; opacity: 0; -webkit-transition: -webkit-transform 0.3s, opacity 0.3s; -moz-transition: -moz-transform 0.3s, opacity 0.3s; transition: transform 0.3s, opacity 0.3s; -webkit-transform: translateY(-100%); -moz-transform: translateY(-100%); transform: translateY(-100%); text-align: center }
+.topnav a:hover span:last-child, .topnav a:focus span:last-child { opacity: 1; -webkit-transform: translateY(0%); -moz-transform: translateY(0%); transform: translateY(0%); }
+#topnav_current { color: #e15782; }
+.en { color: #999; font-size: 12px; z-index: 1; display: block; }/* ie */
+article { width: 1000px; margin: 20px auto; overflow: hidden }
+aside { width: 250px; }
+footer { text-align: center; line-height: 40px; border-top: #E8E8E8 1px solid ; width:1000px; margin:auto}
+
+/*右边栏样式*/
+.news h3 { font-size: 14px; background: url(../images/r_title_bg.jpg) repeat-x center ;margin-top: 20px}
+.news h3 p { background: #fff; width: 70px }
+.news h3 span { color: #65b020 }
+.news h3.ph span { color: #37ccca; }
+.news h3.links span { color: #F17B6B; }
+.news ul { margin-bottom: 20px }
+.news ul li a:hover { text-decoration: underline }
+.rank li { height: 25px; line-height: 25px; clear: both; padding-left: 5px; overflow: hidden; padding-left: 15px; background: url(../images/li.jpg) no-repeat left center; }
+.rank { margin: 10px 0 }
+.rank li a { color: #333; }
+.paih { background: url(../images/ph.jpg) no-repeat left 8px; margin: 10px 0 }
+.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
+.website { margin: 10px 0; background: #F3F3F3; border-radius: 50%; text-align: center; }
+.website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
+.weixin { background: url(../images/weixin.jpg) no-repeat; width: 100%; display: inline-block; height: 250px; overflow: hidden; margin: 10px 0; clear: both }
+aside .rnav ul li a:hover { background: rgba(255,255,255,0.2); -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+.ad{ width:100%; margin:10px auto;}
+.duoshuo{ width:710px;overflow: hidden; background: url(../images/r_line.jpg) repeat-y right; line-height:22px; margin:20px auto;padding-right: 30px; }
+
+/*翻页样式*/
+.page{ margin:20px 0 0 0; text-align:center; width:100%;overflow: hidden;}
+.page a b {color: #999;}
+.page>b,.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}
+.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}/* 针对IE6 */
+.page>b,.page a:hover{background: #333;color: #FFF;}
+.page a {color: #F33;border: #999 1px solid;}
+
+.ds-avatar {
+float: left;
+}
+
+/*自定义滑动条*/
+::-webkit-scrollbar {
+  width: 10px;
+  background: #eee;
+  opacity: .8;  
+}
+::-webkit-scrollbar-button {
+  width: 10px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #eee;
+  border: 1px solid lightgray;
+  box-shadow: 0px 0px 3px #dfdfdf inset;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #969696;
+  border: thin solid gray;
+  border-radius: 10px;
+  -webkit-transition: background .25s linear;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7d7d7d;
+  -webkit-transition: background .25s linear;
+}

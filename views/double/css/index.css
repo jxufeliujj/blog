@@ -185,7 +185,7 @@ opacity:1;
 .avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 130px; height: 55px; text-align: center; line-height: 20px; color: #fff; background: rgba(0, 0, 0, .5); -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
 .avatar a:hover span { display: block; margin-top: 0; }
 .template { background: #F1F0EE }
-.template h3 { border-bottom: #FFF 1px solid; width: 100%; overflow: hidden; font-size: 14px; margin: 0 0 10px; font-family: "Î¢ÈíÑÅºÚ"; display: block; clear: both; }
+.template h3 { border-bottom: #FFF 1px solid; width: 100%; overflow: hidden; font-size: 14px; margin: 0 0 10px; font-family: "å¾®è½¯é›…é»‘"; display: block; clear: both; }
 .template h3 p { background: #474645; width: 180px; height: 25px; margin: 15px 0 0 10px; line-height: 25px; color: #fff; text-align: center; box-shadow: #999 4px 5px 1px; }
 .template h3 p span { color: #38b3d4; }
 .template ul { overflow: hidden; }
@@ -193,7 +193,7 @@ opacity:1;
 .template li img { width: 142px; height: 80px; background: #FFF; padding: 4px; box-shadow: 0px 0px 2px rgba(0,0,0,.5); display: block; }
 .template li span { color: #F1F0EE; display: block; text-align: center; margin-top: 5px; width: 142px; overflow: hidden; text-overflow: ellipsis; height: 14px }
 .template li:hover { background: #666; padding: 5px 5px 6px 5px; }
-h2.title_tj { font: 18px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif; color: #444; font-weight: bold; background: url(../images/h_line.jpg) repeat-x 20px center; }
+h2.title_tj { font: 18px "å¾®è½¯é›…é»‘", Arial, Helvetica, sans-serif; color: #444; font-weight: bold; background: url(../images/h_line.jpg) repeat-x 20px center; }
 h2.title_tj span { color: #FE5187 }
 h2.title_tj p { background: #fff; width: 90px }
 .bloglist { width: 740px; overflow: hidden; background: url(../images/r_line.jpg) repeat-y right; }

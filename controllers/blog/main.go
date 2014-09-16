@@ -34,7 +34,7 @@ func (this *MainController) BlogList() {
 	}
 	this.Data["list"] = list
 	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/life%d.html").ToString()
-	this.setHeadMetas("慢生活")
+	this.setHeadMetas("成长录")
 	this.display("life")
 }
 
@@ -97,7 +97,7 @@ func (this *MainController) Album() {
 	if count > 0 {
 		query.OrderBy("-rank", "-posttime").Limit(pagesize, (this.page-1)*pagesize).All(&list)
 	}
-	this.setHeadMetas("摄影作品")
+	this.setHeadMetas("光影瞬间")
 	this.right = ""
 	this.Data["list"] = list
 	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(pagesize), "/album%d.html").ToString()

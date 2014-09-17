@@ -21,7 +21,7 @@ func (this *SystemController) Setting() {
 	}
 
 	if this.Ctx.Request.Method == "POST" {
-		keys := []string{"sitename", "subtitle", "siteurl", "duoshuo", "weibo", "github", "pagesize", "albumsize", "keywords", "description", "theme", "timezone", "stat"}
+		keys := []string{"sitename", "subtitle", "nickname", "siteurl", "duoshuo", "weibo", "github", "pagesize", "albumsize", "keywords", "description", "theme", "timezone", "stat"}
 		for _, key := range keys {
 			val := this.GetString(key)
 			if _, ok := mp[key]; !ok {

@@ -189,6 +189,7 @@ func (this *MainController) Category() {
 	}
 	this.Data["tag"] = tag
 	this.Data["list"] = list
+	this.Data["css"] = "life"
 	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/category/"+tag.Name+"/page/%d").ToString()
 	this.setHeadMetas(tag.Name, tag.Name, tag.Name)
 	this.display("life")

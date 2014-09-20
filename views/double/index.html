@@ -3,14 +3,13 @@
 </h2>
 <div class="bloglist left">
   {{range $k, $v := .list}}
-    
       <h3><a href="{{$v.Link}}">{{str2html $v.ColorTitle}}</a></h3>
       <figure><a href="{{$v.Link}}"><img src="{{$v.Cover}}"></a></figure>
       <ul>
         <p>{{str2html $v.Excerpt}}</p>
         <a title="阅读全文" href="{{$v.Link}}" class="readmore">阅读全文>></a>
       </ul>
-      <p class="dateview"><span>{{date $v.Posttime "Y-m-j"}}</span><span>作者：{{$v.Author}}</span><span>所属标签：[{{str2html $v.TagsLink}}]</span></p>
+      <p class="lifedateview"><span>{{date $v.Posttime "Y-m-j"}}</span><span>作者：{{$v.Author}}</span><span>所属分类：[{{str2html $v.TagsLink}}]</span></p>
   {{end}}
   {{str2html .pagebar}}
 </div>

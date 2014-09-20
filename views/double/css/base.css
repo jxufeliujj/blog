@@ -102,7 +102,7 @@ float: left;
 .banner { background: url(../images/banner_top.jpg) top center; height: 265px; overflow: hidden }
 .box{ width:1300px; margin:auto; overflow:hidden}
 .boxphoto{ width:1000px; margin:auto; overflow:hidden}
-.texts { width: 350px; line-height: 26px; margin: 60px 0 0 20px; float: left; font-size: 14px; }
+.texts { width: 350px; line-height: 26px; margin: 60px 0 0 100px; float: left; font-size: 14px; }
 .texts p { -webkit-transform: translate(60px); -moz-transform: translate(60px); -o-transform: translate(60px); -ms-transform: translate(60px); transform: translate(60px); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8), 2px 2px 3px rgba(180, 151, 151, 0.3); }
 .texts p:nth-child(1) { -webkit-animation: animations 3s ease-out 1s backwards; -moz-animation: animations 3s ease-out 1s backwards; -o-animation: animations 3s ease-out 1s backwards; -ms-animation: animations 3s ease-out 1s backwards; animation: animations 3s ease-out 1s backwards; }
 .texts p:nth-child(2) { -webkit-animation: animations 3s ease-out 4s backwards; -moz-animation: animations 3s ease-out 4s backwards; -o-animation: animations 3s ease-out 4s backwards; -ms-animation: animations 3s ease-out 4s backwards; animation: animations 3s ease-out 4s backwards; }

@@ -19,7 +19,7 @@ func (this *MainController) Index() {
 		query.OrderBy("-istop", "-views").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/recommend%d.html").ToString()
+	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/index%d.html").ToString()
 	this.setHeadMetas()
 	this.display("index")
 }

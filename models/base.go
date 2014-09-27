@@ -21,7 +21,7 @@ func init() {
 	}
 	dburl := dbuser + ":" + dbpassword + "@tcp(" + dbhost + ":" + dbport + ")/" + dbname + "?charset=utf8"
 	orm.RegisterDataBase("default", "mysql", dburl)
-	orm.RegisterModel(new(User), new(Post), new(Tag), new(Option), new(TagPost), new(Mood), new(Photo), new(Album))
+	orm.RegisterModel(new(User), new(Post), new(Tag), new(Option), new(TagPost), new(Mood), new(Photo), new(Album), new(Link))
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
 	}
@@ -69,15 +69,22 @@ func GetLatestBlog() []*Post {
 func GetHotBlog() []*Post {
 	if !Cache.IsExist("hotblog") {
 		var result []*Post
-		query := new(Post).Query().Filter("status", 0).Filter("urltype", 0)
-		count, _ := query.Count()
-		if count > 0 {
-			query.OrderBy("-views").Limit(5).All(&result)
-		}
+		new(Post).Query().Filter("status", 0).Filter("urltype", 0).OrderBy("-views").Limit(5).All(&result)
 		Cache.Put("hotblog", result)
 	}
 	v := Cache.Get("hotblog")
 	return v.([]*Post)
+}
+
+func GetLinks() []*Link {
+	if !Cache.IsExist("links") {
+		var result []*Link
+		new(Link).Query().OrderBy("-rank").All(&result)
+		Cache.Put("links", result)
+		fmt.Println(result)
+	}
+	v := Cache.Get("links")
+	return v.([]*Link)
 }
 
 //返回带前缀的表名

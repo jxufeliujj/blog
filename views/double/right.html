@@ -20,10 +20,9 @@
       <p>友情<span>链接</span></p>
     </h3>
     <ul class="website">
-      <li><a href="http://blog.doubleliu.com" target="_blank" >去旅行</a></li>
-      <li><a href="http://blog.dou.li" target="_blank">兜里</a></li>
-      <li><a href="http://photobbs.it168.com/home.php?mod=space&uid=28484539&do=thread&view=me&type=thread&from=space" target="_blank">摄友会</a></li>
-      <li><a href="http://wenyi.fr" target="_blank">文艺范儿</a></li>
+      {{range $k,$v := .links}}
+      <li><a href="{{$v.Url}}" target="_blank" >{{$v.Sitename}}</a></li>
+      {{end}}
     </ul>
   
   <a href="/" class="weixin"></a>

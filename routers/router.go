@@ -76,4 +76,10 @@ func init() {
 	beego.Router("/admin/user/add", &admin.UserController{}, "*:Add")
 	beego.Router("/admin/user/edit", &admin.UserController{}, "*:Edit")
 	beego.Router("/admin/user/delete", &admin.UserController{}, "*:Delete")
+
+	//友链管理
+	beego.Router("/admin/link/list", &admin.LinkController{}, "*:List")
+	beego.Router("/admin/link/add", &admin.LinkController{}, "*:Add")
+	beego.Router("/admin/link/edit", &admin.LinkController{}, "*:Edit")
+	beego.Router("/admin/link/delete", &admin.LinkController{}, "*:Delete")
 }

@@ -21,6 +21,7 @@ func (this *baseController) Prepare() {
 	this.Data["options"] = this.options
 	this.Data["latestblog"] = models.GetLatestBlog()
 	this.Data["hotblog"] = models.GetHotBlog()
+	this.Data["links"] = models.GetLinks()
 	this.Data["hidejs"] = `<!--[if lt IE 9]>
   <script src="/views/double/js/modernizr.js"></script>
   <![endif]-->`

@@ -201,3 +201,17 @@ INSERT INTO `tb_user` VALUES (1,'admin','7fef6171469e80d32c0559f88b377245','admi
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-09-15 16:53:52
+
+CREATE TABLE `tb_link` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `sitename` varchar(80) NOT NULL DEFAULT '' COMMENT '网站名字',
+  `url` varchar(200) NOT NULL DEFAULT '' COMMENT '友链URL地址',
+  `rank` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序值',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_link
+-- ----------------------------
+INSERT INTO tb_link VALUES ('1', '云卷云舒', 'http://www.doubleliu.com', '0');
+INSERT INTO tb_link VALUES ('2', '兜里', 'http://dou.li', '0');

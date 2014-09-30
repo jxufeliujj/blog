@@ -66,6 +66,7 @@ CREATE TABLE `tb_option` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+INSERT INTO `tb_option` (`id`, `name`, `value`) VALUES (1,'sitename','云卷云舒'),(2,'siteurl','http://blog.doubleliu.com'),(3,'subtitle','带着相机去旅行'),(4,'pagesize','2'),(5,'keywords','摄影'),(6,'description','来一场说走就走的旅行'),(8,'theme','double'),(9,'timezone','8'),(10,'stat','<script language=\"javascript\" type=\"text/javascript\" src=\"http://js.users.51.la/17253002.js\"></script>\r\n<noscript><a href=\"http://www.51.la/?17253002\" target=\"_blank\"><img alt=\"&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;\" src=\"http://img.users.51.la/17253002.asp\" style=\"border:none\" /></a></noscript>'),(11,'weibo','http://weibo.com/u/2000465995'),(12,'github','https://github.com/jxufeliujj'),(16,'duoshuo','doubleliu'),(17,'albumsize','9');
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

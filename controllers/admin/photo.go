@@ -45,21 +45,21 @@ func (this *PhotoController) Insert(albumid int64, desc, url string) {
 //删除照片
 func (this *PhotoController) Delete() {
 	id, _ := this.GetInt("id")
+	albumid := this.GetString("albumid")
 	photo := models.Photo{Id: id}
 	if photo.Read() == nil {
 		photo.Delete()
 	}
-	this.Redirect("/admin/photo/list", 302)
+	this.Redirect("/admin/photo/list?albumid="+albumid, 302)
 }
 
 //设置封面
 func (this *PhotoController) Cover() {
-	id, _ := this.GetInt("id")
-	photo := models.Photo{Id: id}
-	if photo.Read() == nil {
-		photo.Delete()
-	}
-	this.Redirect("/admin/photo/list", 302)
+	id, _ := this.GetInt("albumid")
+	cover := this.GetString("cover")
+	album := models.Album{Id: id, Cover: cover}
+	album.Update("cover")
+	this.Redirect("/admin/album/list", 302)
 }
 
 //上传照片)

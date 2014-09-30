@@ -12,11 +12,12 @@
 				<td>
 					<ul id="auto-loop" class="gallery list-unstyled">
 				        {{range $k, $v := .list}}
-				            <li data-desc="{{$v.Des}}" data-src="{{$v.Url}}"> 
+				            <li data-desc="{{$v.Des}}"> 
 				              <a href="#">
 				                <img src="{{$v.Small}}" />
 				              </a> 
-				              <a>设为封面</a>  <a>删除</a>
+				              <a href="/admin/photo/cover?cover={{$v.Small}}&albumid={{$v.Albumid}}">设为封面</a>
+				              <a href="/admin/photo/delete?id={{$v.Id}}&albumid={{$v.Albumid}}" onclick="return del_confirm()">删除</a>
 				            </li>
 				       {{end}}
     				</ul>

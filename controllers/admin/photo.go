@@ -18,7 +18,7 @@ func (this *PhotoController) List() {
 	var list []*models.Photo
 	var photo models.Photo
 
-	if albumid, _ = this.GetInt("albumid"); albumid < 1 {
+	if albumid, _ = this.GetInt64("albumid"); albumid < 1 {
 		albumid = 1
 	}
 	photo.Query().Filter("albumid", albumid).OrderBy("-posttime").All(&list)
@@ -44,7 +44,7 @@ func (this *PhotoController) Insert(albumid int64, desc, url string) {
 
 //删除照片
 func (this *PhotoController) Delete() {
-	id, _ := this.GetInt("id")
+	id, _ := this.GetInt64("id")
 	albumid := this.GetString("albumid")
 	photo := models.Photo{Id: id}
 	if photo.Read() == nil {
@@ -55,7 +55,7 @@ func (this *PhotoController) Delete() {
 
 //设置封面
 func (this *PhotoController) Cover() {
-	id, _ := this.GetInt("albumid")
+	id, _ := this.GetInt64("albumid")
 	cover := this.GetString("cover")
 	album := models.Album{Id: id, Cover: cover}
 	album.Update("cover")
@@ -101,7 +101,7 @@ func (this *PhotoController) UploadPhoto() {
 		out["url"] = filename[1:]
 
 	}
-	albumid, _ := this.GetInt("albumid")
+	albumid, _ := this.GetInt64("albumid")
 	this.Insert(albumid, header.Filename, out["url"])
 	this.Data["json"] = out
 	this.ServeJson()

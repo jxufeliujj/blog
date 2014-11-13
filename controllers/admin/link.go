@@ -24,7 +24,7 @@ func (this *LinkController) Add() {
 		var link models.Link
 		sitename := strings.TrimSpace(this.GetString("sitename"))
 		url := strings.TrimSpace(this.GetString("url"))
-		rank, _ := this.GetInt("rank")
+		rank, _ := this.GetInt64("rank")
 		link.Sitename = sitename
 		link.Url = url
 		link.Rank = int8(rank)
@@ -39,7 +39,7 @@ func (this *LinkController) Add() {
 
 //编辑友链
 func (this *LinkController) Edit() {
-	id, _ := this.GetInt("id")
+	id, _ := this.GetInt64("id")
 	link := models.Link{Id: id}
 	if err := link.Read(); err != nil {
 		this.showmsg("友链不存在")
@@ -48,7 +48,7 @@ func (this *LinkController) Edit() {
 	if this.Ctx.Request.Method == "POST" {
 		sitename := strings.TrimSpace(this.GetString("sitename"))
 		url := strings.TrimSpace(this.GetString("url"))
-		rank, _ := this.GetInt("rank")
+		rank, _ := this.GetInt64("rank")
 		link.Sitename = sitename
 		link.Url = url
 		link.Rank = int8(rank)
@@ -61,7 +61,7 @@ func (this *LinkController) Edit() {
 
 //删除友链
 func (this *LinkController) Delete() {
-	id, _ := this.GetInt("id")
+	id, _ := this.GetInt64("id")
 	link := models.Link{Id: id}
 	if link.Read() == nil {
 		link.Delete()

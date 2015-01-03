@@ -17,7 +17,7 @@ func (this *MoodController) List() {
 	var list []*models.Mood
 	var mood models.Mood
 
-	if page, _ = this.GetInt("page"); page < 1 {
+	if page, _ = this.GetInt64("page"); page < 1 {
 		page = 1
 	}
 	offset := (page - 1) * pagesize
@@ -53,7 +53,7 @@ func (this *MoodController) Add() {
 
 //删除说说
 func (this *MoodController) Delete() {
-	id, _ := this.GetInt("id")
+	id, _ := this.GetInt64("id")
 	mood := models.Mood{Id: id}
 	if mood.Read() == nil {
 		mood.Delete()

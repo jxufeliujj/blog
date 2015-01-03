@@ -18,7 +18,7 @@ func (this *AlbumController) List() {
 	var list []*models.Album
 	var album models.Album
 
-	if page, _ = this.GetInt("page"); page < 1 {
+	if page, _ = this.GetInt64("page"); page < 1 {
 		page = 1
 	}
 	offset := (page - 1) * pagesize
@@ -54,7 +54,7 @@ func (this *AlbumController) Add() {
 
 //删除相册
 func (this *AlbumController) Delete() {
-	id, _ := this.GetInt("albumid")
+	id, _ := this.GetInt64("albumid")
 	album := models.Album{Id: id}
 	h, _ := strconv.Atoi(this.GetString("ishide"))
 	album.Ishide = int8(h)
@@ -67,7 +67,7 @@ func (this *AlbumController) Delete() {
 
 //修改
 func (this *AlbumController) Edit() {
-	id, _ := this.GetInt("albumid")
+	id, _ := this.GetInt64("albumid")
 	album := models.Album{Id: id}
 	if album.Read() != nil {
 		this.Abort("404")

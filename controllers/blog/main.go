@@ -134,6 +134,7 @@ func (this *MainController) Show() {
 	if urlname == "about.html" {
 		this.Data["smalltitle"] = "关于我"
 	}
+
 	this.setHeadMetas(post.Title, strings.Trim(post.Tags, ","), post.Title)
 	this.display("article")
 }

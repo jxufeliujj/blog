@@ -1,7 +1,7 @@
 blog
 ====
-
-a simple blog build with beego
+<li><strong>Source</strong>: https://github.com/jxufeliujj/blog
+<li><strong>web</strong>: http://blog.doubleliu.com/
 
 后台初始账号密码：admin admin888
 
@@ -9,5 +9,4 @@ a simple blog build with beego
 
 
 
-<li><strong>Source</strong>: https://github.com/jxufeliujj/blog
-<li><strong>web</strong>: http://blog.doubleliu.com/
+
